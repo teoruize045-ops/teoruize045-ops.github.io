@@ -1,0 +1,2258 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>TZ Works</title>
+<meta name="description" content="TZ Works：说得出，就做得到。帮中小企业把重复的电脑工作变成自动运行的程式。先用模拟资料开发，真实资料不出你的公司。评估免费。">
+<meta property="og:title" content="TZ Works · 说得出，就做得到。">
+<meta property="og:description" content="把每天、每周重复的电脑工作交给我们。简单脚本 RM50 起，买断、独家。评估免费。">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>
+  try { var t = localStorage.getItem("tzworks-theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<style>
+/* Layout: an Apple-style product page for a service. The hero states the promise and shows a live product
+   shot; a scroll-scrubbed demo on a black stage proves it; a dark vault section proves the security;
+   tiles, a plan comparison, a step gallery and a quiet footer with footnotes close it out. */
+:root {
+  --bg: #FFFFFF;
+  --bg-alt: #F5F5F7;
+  --tile: #FFFFFF;
+  --fg: #1D1D1F;
+  --fg-2: #6E6E73;
+  --fg-3: #86868B;
+  --line: #D2D2D7;
+  --accent: #2447D6;
+  --accent-hover: #1A38B8;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(36, 71, 214, 0.08);
+  --highlight: #FFE14A;
+  --flag: #FFE14A;
+  --flag-row: rgba(255, 225, 74, 0.5);
+  --ok: #1E8E4F;
+  --nav-bg: rgba(251, 251, 253, 0.8);
+  --window-bg: #FFFFFF;
+  --window-bar: #F4F4F6;
+  --window-border: rgba(0, 0, 0, 0.08);
+  --grid: #E8E8ED;
+  --head-cell: #F7F7F9;
+  --dot: #D1D1D6;
+  --shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.28), 0 20px 40px -24px rgba(0, 0, 0, 0.18);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --hover-shadow: 0 24px 48px -22px rgba(0, 0, 0, 0.24);
+  --spot: rgba(36, 71, 214, 0.07);
+  --scan: rgba(36, 71, 214, 0.1);
+
+  /* The demo stage is black in both themes, like a product film. */
+  --stage-bg: #000000;
+  --stage-fg: #F5F5F7;
+  --stage-fg-2: #86868B;
+  --stage-surface: #1C1C1E;
+  --stage-line: #38383A;
+  --stage-accent: #7C97FF;
+  --stage-flag: rgba(255, 214, 10, 0.3);
+  --stage-flag-solid: #FFD60A;
+  --stage-ok: #32D74B;
+  --card-light: #F5F5F7;
+  --card-light-fg: #1D1D1F;
+  --card-light-fg-2: #6E6E73;
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", Roboto, Arial, sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, Consolas, "Roboto Mono", monospace;
+
+  --t-hero: clamp(3rem, 1.6rem + 6.2vw, 6rem);
+  --t-h2: clamp(2.25rem, 1.4rem + 3.6vw, 4rem);
+  --t-h3: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);
+  --t-lead: clamp(1.1875rem, 1rem + 0.7vw, 1.625rem);
+  --t-body: 1.0625rem;
+  --t-small: 0.875rem;
+  --t-fine: 0.75rem;
+
+  --gutter: clamp(16px, 4vw, 44px);
+  --wide: 1200px;
+  --narrow: 980px;
+  --radius-tile: 28px;
+  color-scheme: light;
+  interpolate-size: allow-keywords;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000;
+    --bg-alt: #0B0B0C;
+    --tile: #1C1C1E;
+    --fg: #F5F5F7;
+    --fg-2: #A1A1A6;
+    --fg-3: #86868B;
+    --line: #38383A;
+    --accent: #7C97FF;
+    --accent-hover: #97ADFF;
+    --accent-ink: #000000;
+    --accent-soft: rgba(124, 151, 255, 0.14);
+    --highlight: #6B5A10;
+    --flag: #E8CB3C;
+    --flag-row: rgba(232, 203, 60, 0.26);
+    --ok: #32D74B;
+    --nav-bg: rgba(22, 22, 23, 0.8);
+    --window-bg: #1C1C1E;
+    --window-bar: #2A2A2D;
+    --window-border: rgba(255, 255, 255, 0.1);
+    --grid: #303033;
+    --head-cell: #242427;
+    --dot: #48484A;
+    --shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    --card-shadow: none;
+    --hover-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
+    --spot: rgba(124, 151, 255, 0.1);
+    --scan: rgba(124, 151, 255, 0.16);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --bg-alt: #0B0B0C;
+  --tile: #1C1C1E;
+  --fg: #F5F5F7;
+  --fg-2: #A1A1A6;
+  --fg-3: #86868B;
+  --line: #38383A;
+  --accent: #7C97FF;
+  --accent-hover: #97ADFF;
+  --accent-ink: #000000;
+  --accent-soft: rgba(124, 151, 255, 0.14);
+  --highlight: #6B5A10;
+  --flag: #E8CB3C;
+  --flag-row: rgba(232, 203, 60, 0.26);
+  --ok: #32D74B;
+  --nav-bg: rgba(22, 22, 23, 0.8);
+  --window-bg: #1C1C1E;
+  --window-bar: #2A2A2D;
+  --window-border: rgba(255, 255, 255, 0.1);
+  --grid: #303033;
+  --head-cell: #242427;
+  --dot: #48484A;
+  --shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --card-shadow: none;
+  --hover-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
+  --spot: rgba(124, 151, 255, 0.1);
+  --scan: rgba(124, 151, 255, 0.16);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+img, svg { max-width: 100%; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+[hidden] { display: none !important; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; font-weight: 700; letter-spacing: -0.025em; }
+:lang(zh-Hans) :is(h1, h2, h3, .cap > span) { word-break: keep-all; overflow-wrap: anywhere; }
+:lang(zh-Hans) .pledge h3 { word-break: normal; }
+.wrap { width: 100%; max-width: calc(var(--wide) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.wrap-narrow { width: 100%; max-width: calc(var(--narrow) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  transition: background-color 0.3s ease;
+}
+.nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent); transform-origin: 0 50%; transform: scaleX(var(--sp, 0)); pointer-events: none; }
+.nav.over-dark { --nav-bg: rgba(22, 22, 23, 0.78); --fg: #F5F5F7; --fg-2: #A1A1A6; --fg-3: #86868B; --line: #424245; --bg: #000000; }
+.nav .wrap { display: flex; align-items: center; gap: 24px; height: 52px; }
+.brand { display: inline-flex; align-items: center; gap: 9px; color: var(--fg); font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.01em; white-space: nowrap; }
+.brand:hover { text-decoration: none; }
+.brand svg { width: 24px; height: 24px; }
+.nav-links { display: flex; gap: 24px; margin-left: auto; }
+.nav-links button { font: inherit; font-size: 0.8125rem; letter-spacing: inherit; color: var(--fg); opacity: 0.8; background: none; border: 0; padding: 4px 0; cursor: pointer; white-space: nowrap; }
+.nav-links button:hover { opacity: 1; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.langpick {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 5px;
+  height: 30px; padding: 0 10px;
+  border-radius: 980px;
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+  font-size: 0.75rem; font-weight: 500;
+  cursor: pointer;
+}
+.langpick:hover { color: var(--fg); border-color: var(--fg-3); }
+.langpick:focus-within { outline: 3px solid var(--accent); outline-offset: 2px; }
+.langpick .icon { width: 14px; height: 14px; }
+.langpick select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; font-size: 16px; border: 0; }
+.theme-btn { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--fg-2); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.theme-btn:hover { color: var(--fg); border-color: var(--fg-3); }
+.theme-btn svg { width: 15px; height: 15px; }
+
+/* ---------- Buttons & links ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font: 400 1.0625rem/1.2 var(--font);
+  letter-spacing: -0.01em;
+  border-radius: 980px;
+  padding: 12px 24px;
+  border: 0;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--accent-ink);
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+.btn:hover { background: var(--accent-hover); text-decoration: none; }
+.btn-sm { font-size: 0.75rem; padding: 7px 12px; }
+.btn-ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.btn-ghost:hover { background: var(--accent-soft); }
+
+/* ---------- Section rhythm ---------- */
+.section { padding-block: clamp(80px, 9vw, 128px); }
+.section-alt { background: var(--bg-alt); }
+.headline { text-align: center; display: grid; gap: 16px; justify-items: center; margin-bottom: clamp(48px, 6vw, 80px); }
+.headline h2 { font-size: var(--t-h2); line-height: 1.08; }
+:lang(zh-Hans) .headline h2, :lang(zh-Hans) .demo-intro h2 { line-height: 1.16; }
+.headline p:not(.eyebrow) { font-size: var(--t-lead); color: var(--fg-2); max-width: 36em; line-height: 1.45; font-weight: 500; letter-spacing: -0.015em; }
+.eyebrow { color: var(--accent); font-weight: 600; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem); letter-spacing: -0.01em; }
+sup.fn { font-size: 0.55em; vertical-align: super; line-height: 0; font-weight: 500; color: var(--fg-2); }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(52px, 7vw, 96px) clamp(72px, 10vw, 140px); text-align: center; overflow-x: clip; }
+.hero-copy { display: grid; justify-items: center; gap: 20px; }
+.hero h1 { font-size: var(--t-hero); line-height: 1.04; letter-spacing: -0.035em; }
+:lang(zh-Hans) .hero h1 { line-height: 1.14; }
+:lang(en) .hero h1, :lang(ms) .hero h1 { font-size: clamp(2.25rem, 1rem + 5.2vw, 6rem); }
+.hero h1 .l { display: block; }
+.hero mark {
+  background: linear-gradient(var(--highlight), var(--highlight)) no-repeat 0 92% / 100% 0.3em;
+  color: inherit;
+  padding-inline: 0.04em;
+}
+.hero .lead { font-size: var(--t-lead); color: var(--fg-2); max-width: 30em; line-height: 1.42; font-weight: 500; letter-spacing: -0.015em; }
+
+.wish {
+  display: inline-flex; align-items: center; gap: 10px;
+  max-width: 100%;
+  padding: 7px 7px 7px 16px;
+  border-radius: 980px;
+  background: var(--bg-alt);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--line) 50%, transparent);
+  text-align: left;
+}
+.wish-say { flex: none; color: var(--fg-3); font-size: 0.875rem; }
+.wish-text { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; font-size: 1rem; }
+.wish-text::before { content: "“"; color: var(--fg-3); }
+.wish-text::after { content: "”"; color: var(--fg-3); }
+.wish.typing .wish-text::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -0.16em; background: var(--accent); animation: caret 0.9s steps(1) infinite; }
+.wish-done { flex: none; display: inline-flex; align-items: center; gap: 4px; padding: 5px 12px 5px 9px; border-radius: 980px; background: #1E8E4F; color: #FFFFFF; font-size: 0.8125rem; font-weight: 600; transition: opacity 0.25s ease, transform 0.25s ease; }
+.wish-done .icon { width: 14px; height: 14px; stroke-width: 2.8; }
+.wish.typing .wish-done { opacity: 0; transform: scale(0.85); }
+@keyframes caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.trust { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-size: var(--t-small); color: var(--fg-2); }
+.trust li { display: inline-flex; align-items: center; gap: 6px; }
+.trust .icon { width: 16px; height: 16px; color: var(--ok); }
+
+.shot { position: relative; margin: clamp(56px, 7vw, 88px) auto 0; width: min(1040px, 100%); perspective: 2000px; }
+.window {
+  position: relative;
+  background: var(--window-bg);
+  border: 1px solid var(--window-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  text-align: left;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+.window-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 42px;
+  padding-inline: 14px;
+  background: var(--window-bar);
+  border-bottom: 1px solid var(--grid);
+  font-size: 0.8125rem;
+  color: var(--fg-2);
+}
+.dots { display: flex; gap: 8px; }
+.dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--dot); display: block; }
+.window-title { font-weight: 600; color: var(--fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.status { justify-self: end; display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--ok); font-weight: 600; white-space: nowrap; }
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 20%, transparent); }
+.xl-wrap { position: relative; overflow: hidden; }
+table.xl { width: 100%; border-collapse: collapse; font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.xl th, .xl td { border-right: 1px solid var(--grid); border-bottom: 1px solid var(--grid); padding: 8px 12px; white-space: nowrap; text-align: left; }
+.xl thead th { background: var(--head-cell); color: var(--fg-3); font-weight: 500; font-size: 0.6875rem; text-align: center; padding-block: 5px; }
+.xl tbody th { background: var(--head-cell); color: var(--fg-3); font-weight: 500; font-size: 0.6875rem; width: 36px; text-align: center; }
+.xl tr.hdr td { font-weight: 600; color: var(--fg); }
+.xl td.num { text-align: right; font-family: var(--mono); font-size: 0.78rem; }
+.xl td.muted { color: var(--fg-2); }
+.xl tr.flag td { background: var(--flag-row); }
+.xl .why { display: inline-block; margin-left: 8px; font-family: var(--font); font-size: 0.6875rem; font-weight: 600; color: #1D1D1F; background: var(--flag); padding: 1px 7px; border-radius: 980px; }
+.scanbar { position: absolute; left: 0; right: 0; top: 0; height: 0; background: var(--scan); box-shadow: inset 3px 0 0 var(--accent); opacity: 0; pointer-events: none; transition: transform 0.38s cubic-bezier(0.2, 0.7, 0.2, 1), height 0.38s ease, opacity 0.3s ease; }
+.scanbar.on { opacity: 1; }
+.xl tr.hit .why { animation: whyPop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.4); }
+@keyframes whyPop { 0% { transform: scale(0.4); } 100% { transform: scale(1); } }
+
+.toast {
+  position: absolute;
+  right: clamp(-28px, -2vw, 0px);
+  bottom: clamp(-28px, -3vw, -16px);
+  width: min(340px, 80%);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  align-items: center;
+  padding: 14px 16px;
+  text-align: left;
+  background: color-mix(in srgb, var(--window-bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--window-border);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3);
+}
+.toast .ok { grid-row: span 2; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: #1E8E4F; color: #FFFFFF; }
+.toast .ok svg { width: 20px; height: 20px; stroke-width: 2.4; }
+.toast b { font-size: 0.9375rem; }
+.toast b small { font-weight: 400; color: var(--fg-3); margin-left: 6px; font-size: 0.75rem; font-family: var(--mono); }
+.toast span { font-size: 0.8125rem; color: var(--fg-2); }
+.toast.bump { animation: bump 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.3); }
+@keyframes bump { 40% { transform: scale(1.04); } }
+
+/* ---------- Manifesto ---------- */
+.manifesto { padding-block: clamp(96px, 12vw, 176px); }
+.manifesto .wrap-narrow { max-width: calc(880px + 2 * var(--gutter)); }
+.manifesto .eyebrow { margin-bottom: 22px; }
+.scrub { --p: 1; font-size: clamp(1.75rem, 1.05rem + 2.7vw, 3.25rem); line-height: 1.32; font-weight: 700; letter-spacing: -0.025em; }
+:lang(zh-Hans) .scrub { line-height: 1.45; letter-spacing: 0; }
+.scrub .c { opacity: clamp(0.16, calc(0.16 + (var(--p) * (var(--n) + 10) - var(--i)) * 0.084), 1); }
+.sign { margin-top: 40px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem); font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+.sign small { font-size: var(--t-small); font-weight: 600; color: var(--fg-3); letter-spacing: 0; }
+
+/* ---------- Demo (pinned, scroll-scrubbed) ---------- */
+.demo-intro { background: var(--stage-bg); color: var(--stage-fg); text-align: center; padding-block: clamp(96px, 12vw, 168px) clamp(24px, 4vw, 48px); }
+.demo-intro .eyebrow { color: var(--stage-accent); }
+.demo-intro h2 { font-size: var(--t-h2); line-height: 1.06; margin-top: 12px; }
+.demo-intro p:not(.eyebrow) { font-size: var(--t-lead); color: var(--stage-fg-2); margin: 18px auto 0; max-width: 28em; line-height: 1.45; font-weight: 500; }
+.demo-intro p b { color: var(--stage-fg); font-weight: 600; }
+.demo { background: var(--stage-bg); color: var(--stage-fg); overflow-x: clip; }
+.demo-stage { padding-block: 32px clamp(96px, 10vw, 140px); }
+.demo-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.caps { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(18px, 2.4vw, 30px); }
+.cap { text-wrap: balance; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.375rem); line-height: 1.18; font-weight: 700; letter-spacing: -0.025em; color: var(--stage-fg); transition: color 0.35s ease; }
+.cap small { display: block; margin-top: 8px; font-size: 1rem; line-height: 1.5; font-weight: 500; letter-spacing: -0.01em; color: var(--stage-fg-2); }
+.timer { display: flex; align-items: baseline; gap: 6px 14px; flex-wrap: wrap; margin-bottom: clamp(20px, 3vw, 36px); font-size: 0.9375rem; color: var(--stage-fg-2); }
+.timer output { font-family: var(--mono); font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem); font-weight: 600; color: var(--stage-ok); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.timer s { text-decoration: none; }
+.box { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: 72vh; margin-inline: auto; }
+.file {
+  position: absolute; left: 0; top: 0;
+  width: var(--tw, 88px); height: var(--th, 64px);
+  border-radius: 10px;
+  background: var(--stage-surface);
+  border: 1px solid var(--stage-line);
+  display: grid; place-items: center; align-content: center; gap: 6px;
+  font-size: 0.6875rem; color: var(--stage-fg-2);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.file svg { width: 22px; height: 22px; color: var(--stage-accent); stroke-width: 1.5; }
+.master {
+  position: absolute; left: 4%; top: 6%; width: 92%;
+  background: var(--stage-surface);
+  border: 1px solid var(--stage-line);
+  border-radius: 14px;
+  overflow: hidden;
+  transform-origin: 50% 40%;
+  will-change: transform, opacity;
+}
+.master-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--stage-line); font-size: 0.8125rem; color: var(--stage-fg-2); }
+.master-bar b { color: var(--stage-fg); font-weight: 600; }
+.master-bar output { font-family: var(--mono); color: var(--stage-fg); font-variant-numeric: tabular-nums; }
+.mrow { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(0, 0.8fr) 8em; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--stage-line); font-size: 0.78rem; font-variant-numeric: tabular-nums; color: var(--stage-fg); }
+.mrow:last-child { border-bottom: 0; color: var(--stage-fg-2); }
+.mrow > span, .mrow > em { position: relative; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mrow .more-rows { grid-column: 1 / -1; }
+.mrow .n { text-align: right; font-family: var(--mono); font-size: 0.75rem; }
+.mrow .hl { position: absolute; inset: 0; background: var(--stage-flag); pointer-events: none; }
+.note { justify-self: end; font-style: normal; font-size: 0.6875rem; font-weight: 600; background: var(--stage-flag-solid); color: #1D1D1F; padding: 2px 8px; border-radius: 980px; }
+.scanline { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--stage-flag-solid), transparent); box-shadow: 0 0 18px 3px rgba(255, 214, 10, 0.45); opacity: 0; pointer-events: none; z-index: 2; }
+.report {
+  position: absolute; right: 0; bottom: 0;
+  width: min(300px, 70%);
+  background: var(--card-light); color: var(--card-light-fg);
+  border-radius: 18px;
+  padding: 16px 18px;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+  display: grid; gap: 10px;
+  will-change: transform, opacity;
+}
+.report-head { display: flex; align-items: center; gap: 10px; }
+.report-head .ok { width: 30px; height: 30px; border-radius: 9px; background: #1E8E4F; color: #FFFFFF; display: grid; place-items: center; flex: none; }
+.report-head .ok svg { width: 18px; height: 18px; stroke-width: 2.4; }
+.report-head b { font-size: 0.9375rem; }
+.report-head small { display: block; font-size: 0.75rem; color: var(--card-light-fg-2); }
+.report dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 0.8125rem; }
+.report dt { color: var(--card-light-fg-2); }
+.report dd { margin: 0; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.report dd.warn { color: #9A6700; }
+.bars { display: flex; align-items: flex-end; gap: 5px; height: 38px; }
+.bars i { flex: 1; background: #2447D6; border-radius: 3px 3px 0 0; opacity: 0.85; display: block; }
+.bars i:nth-child(3) { background: #F2B400; }
+.demo.is-scrub { height: 380vh; }
+.demo.is-scrub .demo-stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; align-content: center; padding-block: 64px 24px; }
+.demo.is-scrub .cap { color: color-mix(in srgb, var(--stage-fg) 28%, transparent); }
+.demo.is-scrub .cap.on { color: var(--stage-fg); }
+.demo.is-scrub .cap small { opacity: 0; transition: opacity 0.35s ease; }
+.demo.is-scrub .cap.on small { opacity: 1; }
+.progress { display: none; }
+.demo.is-scrub .progress { display: flex; gap: 6px; margin-top: clamp(20px, 3vw, 32px); }
+.progress i { width: 28px; height: 3px; border-radius: 3px; background: var(--stage-line); overflow: hidden; display: block; position: relative; }
+.progress i::after { content: ""; position: absolute; inset: 0; background: var(--stage-fg); transform-origin: left; transform: scaleX(var(--f, 0)); }
+
+/* ---------- Stats ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; text-align: center; }
+.stat { display: grid; gap: 6px; justify-items: center; min-width: 0; }
+.stat .big { font-size: clamp(3rem, 2rem + 4vw, 5.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat .big small { font-size: 0.4em; letter-spacing: -0.02em; margin-left: 0.12em; }
+.stat p { color: var(--fg-2); font-size: 1.0625rem; font-weight: 500; }
+.stat-ok .big { color: var(--ok); }
+
+/* ---------- Bento tiles ---------- */
+.bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+.tile { grid-column: span 3; background: var(--tile); border-radius: var(--radius-tile); padding: clamp(28px, 3.4vw, 44px); display: grid; grid-template-rows: auto 1fr; gap: 28px; min-width: 0; overflow: hidden; box-shadow: var(--card-shadow); }
+.tile.w2 { grid-column: span 2; }
+.tile.w4 { grid-column: span 4; }
+.tile-copy { display: grid; gap: 8px; align-content: start; }
+.tile-kicker { font-size: var(--t-small); font-weight: 600; color: var(--fg-2); }
+.tile h3 { font-size: var(--t-h3); line-height: 1.15; }
+.tile p { color: var(--fg-2); font-size: 1rem; }
+.tile .tier-tag { justify-self: start; font-size: 0.6875rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 3px 9px; border-radius: 980px; }
+.art { align-self: end; min-width: 0; }
+
+.match { display: grid; grid-template-columns: 1fr 36px 1fr; gap: 0 8px; font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.match .col { display: grid; gap: 8px; }
+.match .col b { font-size: 0.6875rem; color: var(--fg-3); font-weight: 600; }
+.match .cell { background: var(--bg-alt); border-radius: 8px; padding: 7px 10px; display: flex; justify-content: space-between; gap: 8px; }
+.match .cell.bad { background: var(--flag-row); }
+.match .links { display: grid; gap: 8px; padding-top: 22px; }
+.match .links i { height: 31px; display: grid; place-items: center; color: var(--ok); font-style: normal; font-weight: 700; }
+.match .links i.x { color: #C93400; }
+.cell span:last-child { font-family: var(--mono); font-size: 0.75rem; }
+
+.letters { position: relative; height: 150px; }
+.letter { --rot: 0deg; --tx: 0%; position: absolute; width: 62%; left: 19%; background: var(--bg); border: 1px solid var(--grid); border-radius: 10px; padding: 12px 14px; font-size: 0.75rem; color: var(--fg-2); box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.25); transform: rotate(var(--rot)) translateX(var(--tx)); }
+.letter b { display: block; color: var(--fg); font-size: 0.8125rem; margin-bottom: 6px; }
+.letter i { display: block; height: 5px; border-radius: 3px; background: var(--grid); margin-top: 6px; }
+.letter i:last-child { width: 60%; }
+.letter:nth-child(1) { top: 28px; --rot: -5deg; --tx: -18%; }
+.letter:nth-child(2) { top: 14px; --rot: 3deg; --tx: 14%; }
+.letter:nth-child(3) { top: 0; }
+
+.stock { display: grid; gap: 8px; font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.stock div { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; background: var(--bg-alt); border-radius: 8px; padding: 7px 10px; }
+.stock div.bad { background: var(--flag-row); }
+.stock span:not(:first-child) { font-family: var(--mono); font-size: 0.75rem; text-align: right; min-width: 2.5em; }
+.stock .h { background: none; padding-block: 0; font-size: 0.6875rem; color: var(--fg-3); font-weight: 600; }
+.stock .h span { font-family: var(--font); }
+
+.orders { display: flex; align-items: center; gap: 16px; }
+.order-list { flex: 1; display: grid; gap: 8px; min-width: 0; }
+.order { display: flex; justify-content: space-between; gap: 10px; background: var(--bg-alt); border-radius: 8px; padding: 7px 10px; font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.order span:last-child { font-family: var(--mono); font-size: 0.75rem; }
+.order-arrow { color: var(--fg-3); }
+.order-dest { flex: none; width: 108px; aspect-ratio: 1; border-radius: 22px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; align-content: center; gap: 6px; text-align: center; font-size: 0.75rem; font-weight: 600; line-height: 1.3; padding: 8px; }
+.order-dest svg { width: 28px; height: 28px; }
+
+.receipt-art { display: grid; grid-template-columns: minmax(0, 0.9fr) auto minmax(0, 1.1fr); gap: 14px; align-items: center; }
+.receipt { position: relative; overflow: hidden; background: var(--bg); border: 1px solid var(--grid); border-radius: 10px; padding: 14px; font-size: 0.75rem; color: var(--fg-2); display: grid; gap: 6px; box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.25); }
+.receipt::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 34%; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent) 16%, transparent) 75%, color-mix(in srgb, var(--accent) 50%, transparent)); translate: 0 -110%; pointer-events: none; }
+.receipt b { color: var(--fg); font-size: 0.8125rem; }
+.receipt mark { background: linear-gradient(var(--flag-row), var(--flag-row)) no-repeat 0 0 / 100% 100%; color: var(--fg); border-radius: 4px; padding: 0 4px; font-variant-numeric: tabular-nums; }
+.receipt i { display: block; height: 5px; border-radius: 3px; background: var(--grid); }
+.fields { display: grid; gap: 6px; font-size: 0.8125rem; }
+.fields div { display: flex; justify-content: space-between; gap: 10px; background: var(--bg-alt); border-radius: 8px; padding: 7px 10px; }
+.fields span:first-child { color: var(--fg-3); }
+.fields span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.marquee { display: grid; gap: 10px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.mq-track { display: flex; width: max-content; }
+.mq-set { display: flex; gap: 8px; padding-right: 8px; }
+.mq-set span { font-size: 0.875rem; padding: 7px 14px; border-radius: 980px; background: var(--bg-alt); color: var(--fg); white-space: nowrap; }
+html:not(.anim) .mq-set[aria-hidden], html:not(.anim) .mq.rev { display: none; }
+html:not(.anim) .mq-track { width: auto; }
+html:not(.anim) .mq-set { flex-wrap: wrap; }
+html:not(.anim) .marquee { -webkit-mask-image: none; mask-image: none; }
+
+/* ---------- Security vault (dark in both themes) ---------- */
+.vault {
+  --fg: #F5F5F7; --fg-2: #9AA3B2; --fg-3: #7D8594; --line: rgba(255, 255, 255, 0.1);
+  --accent: #7C97FF; --accent-ink: #000000; --tile: rgba(255, 255, 255, 0.035);
+  --spot: rgba(124, 151, 255, 0.12); --hover-shadow: 0 0 0 1px rgba(124, 151, 255, 0.35);
+  --v-bg: #05070D; --v-real: #FFD60A; --v-ok: #32D74B;
+  position: relative;
+  overflow: hidden;
+  color: var(--fg);
+  background: radial-gradient(900px 540px at 50% 0%, rgba(36, 71, 214, 0.38), transparent 70%), var(--v-bg);
+  padding-block: clamp(96px, 11vw, 160px);
+  color-scheme: dark;
+}
+.vault::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000, transparent 75%); mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000, transparent 75%); pointer-events: none; }
+.vault > .wrap { position: relative; }
+.guard { position: relative; width: 116px; height: 116px; display: grid; place-items: center; margin: 0 auto 8px; background: radial-gradient(circle, rgba(124, 151, 255, 0.22), transparent 68%); border-radius: 50%; }
+.guard::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(124, 151, 255, 0.24); }
+.guard i { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0 70%, rgba(124, 151, 255, 0.95)); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px)); mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px)); }
+.guard svg { position: relative; width: 60px; height: 60px; color: var(--accent); stroke-width: 1.3; }
+
+.pipe { display: grid; grid-template-columns: minmax(0, 1fr) 190px minmax(0, 1fr); align-items: center; margin-bottom: clamp(56px, 7vw, 88px); }
+.pcard { position: relative; background: var(--tile); border: 1px solid var(--line); border-radius: 22px; padding: 20px 22px 18px; display: grid; gap: 12px; min-width: 0; }
+.pcard-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-weight: 600; }
+.pcard-head > span:first-child { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.pcard-head .icon { width: 18px; height: 18px; color: var(--fg-2); }
+.pbadge { flex: none; font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: 980px; }
+.real .pbadge { background: rgba(255, 214, 10, 0.14); color: #FFD60A; }
+.fake .pbadge { background: rgba(124, 151, 255, 0.16); color: #A9B9FF; }
+.rec { margin: 0; display: grid; }
+.rec div { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.9375rem; }
+.rec dt { color: var(--fg-2); }
+.rec dd { margin: 0; font-family: var(--mono); font-size: 0.875rem; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.real dd { filter: blur(5px); user-select: none; }
+.fake dd { color: #C9D4FF; }
+.pnote { display: flex; align-items: center; gap: 6px; font-size: 0.8125rem; color: var(--fg-2); }
+.pnote .icon { width: 15px; height: 15px; }
+.real .pnote .icon { color: var(--v-real); }
+.fake .pnote .icon { color: var(--v-ok); }
+.gate { position: relative; align-self: stretch; display: grid; place-items: center; align-content: center; gap: 8px; text-align: center; min-height: 170px; }
+.gate-line { position: absolute; left: -2px; right: -2px; top: 50%; height: 2px; margin-top: -19px; background: linear-gradient(90deg, rgba(255, 214, 10, 0.5), rgba(124, 151, 255, 0.5)); }
+.gate-line i { position: absolute; top: 50%; left: 0; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: #FFD60A; box-shadow: 0 0 10px 2px rgba(255, 214, 10, 0.6); opacity: 0; }
+.gate-lock { position: relative; z-index: 1; width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: #0B1122; border: 1px solid rgba(124, 151, 255, 0.45); box-shadow: 0 0 0 8px rgba(124, 151, 255, 0.06), 0 0 40px rgba(124, 151, 255, 0.25); color: var(--accent); }
+.gate-lock .icon { width: 30px; height: 30px; }
+.gate b { position: relative; z-index: 1; font-size: 1rem; }
+.gate small { position: relative; z-index: 1; font-size: 0.75rem; color: var(--fg-2); }
+
+.pledges { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.pledge { position: relative; background: var(--tile); border: 1px solid var(--line); border-radius: 20px; padding: 22px 20px 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.pledge .pi { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(124, 151, 255, 0.12); color: var(--accent); margin-bottom: 6px; }
+.pledge .pi .icon { width: 22px; height: 22px; }
+.pledge h3 { font-size: 1.0625rem; line-height: 1.35; letter-spacing: -0.01em; padding-right: 26px; }
+.pledge p { font-size: var(--t-small); color: var(--fg-2); line-height: 1.55; }
+.pledge .tick { position: absolute; top: 22px; right: 18px; width: 20px; height: 20px; color: var(--v-ok); fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.pledge .tick path { stroke-dasharray: 22; stroke-dashoffset: 0; }
+.sec-foot { margin: 40px auto 0; max-width: 52rem; display: flex; justify-content: center; align-items: flex-start; gap: 10px; text-align: left; color: var(--fg-2); font-size: 0.9375rem; }
+.sec-foot .icon { width: 20px; height: 20px; color: var(--accent); margin-top: 2px; }
+
+/* ---------- Plans ---------- */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 32px); }
+.plan { display: grid; grid-template-rows: auto auto auto auto 1fr; justify-items: center; text-align: center; gap: 14px; padding: clamp(28px, 3vw, 40px) clamp(20px, 2.4vw, 32px); border-radius: var(--radius-tile); background: var(--tile); box-shadow: var(--card-shadow); min-width: 0; }
+.plan-glyph { width: 64px; height: 64px; border-radius: 18px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; }
+.plan-glyph svg { width: 32px; height: 32px; stroke-width: 1.5; }
+.plan h3 { font-size: 1.75rem; line-height: 1.15; }
+.plan h3 small { display: block; font-size: 0.875rem; color: var(--fg-3); font-weight: 600; letter-spacing: 0; margin-bottom: 6px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8125rem; font-weight: 600; padding: 5px 12px; border-radius: 980px; }
+.badge-buy { background: var(--accent); color: var(--accent-ink); }
+.badge-sub { box-shadow: inset 0 0 0 1px var(--line); color: var(--fg-2); }
+.price { display: grid; gap: 2px; }
+.price b { font-size: 2.25rem; letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.price b small { font-size: 1rem; font-weight: 600; color: var(--fg-2); letter-spacing: -0.01em; }
+.price b .pre { margin-right: 6px; }
+.price b .post { margin-left: 4px; }
+.price b small:empty { display: none; }
+.price span { font-size: var(--t-small); color: var(--fg-2); }
+.feats { list-style: none; margin: 10px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); display: grid; gap: 16px; width: 100%; align-content: start; }
+.feats li { display: grid; justify-items: center; gap: 6px; font-size: 0.9375rem; color: var(--fg); line-height: 1.45; }
+.feats li .icon { width: 26px; height: 26px; color: var(--fg-2); }
+.feats li.key { font-weight: 600; }
+.feats li.key .icon { color: var(--accent); }
+.feats li em { font-style: normal; display: block; color: var(--fg-2); font-size: 0.8125rem; font-weight: 400; }
+.promise { margin-top: clamp(20px, 2.4vw, 32px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(20px, 2.4vw, 32px); }
+.band { border-radius: var(--radius-tile); padding: clamp(28px, 3.6vw, 48px); display: grid; gap: 14px; align-content: start; min-width: 0; }
+.band h3 { font-size: var(--t-h3); line-height: 1.15; }
+.band p { font-size: 1.0625rem; line-height: 1.6; }
+.band-buy { position: relative; overflow: hidden; background: var(--accent); color: var(--accent-ink); }
+.band-buy::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%); translate: -110% 0; pointer-events: none; }
+.band-buy p { opacity: 0.88; }
+.band-buy ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.band-buy li { display: grid; gap: 6px; font-size: 1rem; line-height: 1.35; }
+.band-buy li b { font-weight: 600; font-size: 1.0625rem; }
+.band-buy li .icon { width: 28px; height: 28px; }
+.band-buy li span { font-size: 0.8125rem; opacity: 0.85; }
+.band-sub { background: var(--tile); box-shadow: var(--card-shadow); }
+.band-sub p { color: var(--fg-2); }
+.meter { display: grid; gap: 8px; margin-top: 6px; }
+.meter-track { position: relative; height: 8px; border-radius: 8px; background: linear-gradient(90deg, var(--accent-soft), var(--accent)); overflow: hidden; }
+.meter-labels { display: flex; justify-content: space-between; font-size: var(--t-small); color: var(--fg-2); font-variant-numeric: tabular-nums; }
+.meter-labels b { color: var(--fg); }
+.fine { margin-top: 28px; text-align: center; color: var(--fg-2); font-size: var(--t-small); }
+.fine + .fine { margin-top: 8px; }
+
+/* ---------- Process gallery ---------- */
+.gallery {
+  display: flex; gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(var(--gutter), calc((100% - var(--wide)) / 2));
+  padding-inline: max(var(--gutter), calc((100% - var(--wide)) / 2));
+  padding-block: 8px 24px;
+  scrollbar-width: none;
+}
+.gallery::-webkit-scrollbar { display: none; }
+.step { flex: 0 0 min(340px, 78%); scroll-snap-align: start; background: var(--tile); border-radius: var(--radius-tile); padding: 32px 28px 36px; display: grid; gap: 12px; align-content: start; min-height: 300px; box-shadow: var(--card-shadow); }
+.step .num { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.step h3 { font-size: 1.5rem; line-height: 1.2; margin-top: 18px; }
+.step p { color: var(--fg-2); }
+.step .who { margin-top: auto; padding-top: 14px; font-size: var(--t-small); color: var(--fg-3); }
+.gallery-nav { display: flex; justify-content: flex-end; gap: 12px; margin-top: 8px; }
+.round { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--tile); color: var(--fg); display: grid; place-items: center; cursor: pointer; box-shadow: var(--card-shadow); }
+.round:hover { background: var(--line); }
+.round:disabled { opacity: 0.35; cursor: default; }
+.round svg { width: 20px; height: 20px; }
+
+/* ---------- FAQ ---------- */
+.faq { max-width: 860px; margin-inline: auto; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 24px; font-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.5rem); font-weight: 600; letter-spacing: -0.02em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .plus { flex: none; width: 22px; height: 22px; color: var(--fg-2); transition: transform 0.3s ease; }
+.faq details[open] summary .plus { transform: rotate(45deg); }
+.faq details p { padding: 0 44px 26px 0; color: var(--fg-2); font-size: 1.0625rem; max-width: 44rem; }
+
+/* ---------- Intake ---------- */
+.intake { max-width: 760px; margin-inline: auto; }
+.form { background: var(--tile); border-radius: var(--radius-tile); padding: clamp(24px, 4vw, 48px); display: grid; gap: 16px; box-shadow: var(--card-shadow); }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.fld { position: relative; display: block; min-width: 0; }
+.fld label { position: absolute; left: 16px; top: 10px; font-size: 0.75rem; color: var(--fg-2); pointer-events: none; }
+.fld input, .fld select, .fld textarea {
+  width: 100%;
+  font: 400 1.0625rem/1.4 var(--font);
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 30px 15px 10px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.fld select { padding-right: 40px; background-image: linear-gradient(45deg, transparent 50%, var(--fg-2) 50%), linear-gradient(135deg, var(--fg-2) 50%, transparent 50%); background-position: calc(100% - 22px) 55%, calc(100% - 17px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
+.fld textarea { min-height: 140px; resize: vertical; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.fld .opt { color: var(--fg-3); }
+fieldset.budget { border: 0; margin: 0; padding: 4px 0 0; min-width: 0; }
+fieldset.budget legend { padding: 0; margin-bottom: 10px; font-size: 0.875rem; color: var(--fg-2); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.toggles { display: flex; flex-wrap: wrap; gap: 8px; }
+.toggle { position: relative; }
+.toggle input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.toggle span { display: inline-block; padding: 8px 16px; border-radius: 980px; font-size: 0.9375rem; box-shadow: inset 0 0 0 1px var(--line); color: var(--fg); transition: background-color 0.2s ease, color 0.2s ease; }
+.toggle input:checked + span { background: var(--accent); color: var(--accent-ink); box-shadow: none; }
+.toggle input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.form-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
+.form-foot p { color: var(--fg-3); font-size: var(--t-small); }
+.form-privacy { display: flex; align-items: center; gap: 8px; color: var(--fg-2); font-size: var(--t-small); }
+.form-privacy .icon { width: 16px; height: 16px; color: var(--ok); }
+.err { color: #D70015; font-size: var(--t-small); }
+:root[data-theme="dark"] .err { color: #FF6961; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .err { color: #FF6961; } }
+.btn[disabled] { opacity: 0.6; cursor: progress; }
+.sent { background: var(--tile); border-radius: var(--radius-tile); padding: clamp(32px, 5vw, 56px); display: grid; justify-items: center; gap: 12px; text-align: center; box-shadow: var(--card-shadow); }
+.sent-mark svg { width: 68px; height: 68px; fill: none; stroke: var(--ok); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.sent-mark circle { stroke-dasharray: 151; stroke-dashoffset: 0; }
+.sent-mark path { stroke-dasharray: 36; stroke-dashoffset: 0; }
+.sent h3 { font-size: var(--t-h3); line-height: 1.2; }
+.sent p { color: var(--fg-2); max-width: 30em; }
+.sent .sent-note { font-size: var(--t-small); background: var(--bg-alt); border-radius: 12px; padding: 10px 14px; }
+.sent .btn { margin-top: 8px; }
+.contact { margin-top: 24px; text-align: center; color: var(--fg-2); font-size: var(--t-small); }
+
+/* ---------- Footer ---------- */
+.foot { background: var(--bg-alt); color: var(--fg-2); font-size: var(--t-fine); line-height: 1.6; padding-block: 28px 44px; }
+.foot ol { margin: 0 0 18px; padding-left: 1.4em; display: grid; gap: 8px; max-width: 64rem; }
+.foot .bottom { border-top: 1px solid var(--line); padding-top: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+.foot .slogan { color: var(--fg); font-weight: 600; }
+.plink { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); white-space: nowrap; }
+.plink:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+/* ---------- Spotlight cards (pointer devices) ---------- */
+.spot { position: relative; isolation: isolate; }
+@media (hover: hover) and (pointer: fine) {
+  .spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--spot), transparent 45%); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: -1; }
+  .spot:hover::before { opacity: 1; }
+  .spot:hover { translate: 0 -4px; box-shadow: var(--hover-shadow); }
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .hero-copy > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .hero-copy > :nth-child(2) { animation-delay: 0.06s; }
+  .hero-copy > :nth-child(3) { animation-delay: 0.12s; }
+  .hero-copy > :nth-child(4) { animation-delay: 0.18s; }
+  .hero-copy > :nth-child(5) { animation-delay: 0.24s; }
+  .hero-copy > :nth-child(6) { animation-delay: 0.3s; }
+  .hero mark { animation: sweep 1s 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .shot { animation: rise 1.1s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .toast { animation: toastIn 0.7s 1.1s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+  .status::before { animation: ping 1.8s ease-out infinite; }
+  .spot { transition: translate 0.35s ease, box-shadow 0.35s ease; }
+  .reveal { transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--k, 0) * 60ms), translate 0.35s ease, box-shadow 0.35s ease; }
+  .reveal:not(.in) { transform: translateY(40px); }
+  .rise > * { transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .rise > :nth-child(2) { transition-delay: 0.07s; }
+  .rise > :nth-child(3) { transition-delay: 0.14s; }
+  .rise > :nth-child(4) { transition-delay: 0.21s; }
+  .rise:not(.in) > * { transform: translateY(32px); }
+  .scrub .c { transition: opacity 0.12s linear; }
+  body, .nav, .toggle span { transition-duration: 0.3s; }
+
+  /* Tile illustrations come alive when they scroll into view. */
+  .anim .tile.in .match .cell { animation: fromL 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--k) * 90ms + 0.2s); }
+  .anim .tile.in .match .col:last-child .cell { animation-name: fromR; }
+  .anim .tile.in .match .links i { animation: popIn 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.4) both; animation-delay: calc(var(--k) * 160ms + 0.75s); }
+  .anim .tile.in .letter { animation: fan 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both 0.3s; }
+  .anim .tile.in .stock .bad { animation: flash 1s ease 0.6s 2; }
+  .anim .tile.live .order { animation: ship 3.6s cubic-bezier(0.55, 0, 0.35, 1) infinite; animation-delay: calc(var(--k) * 1.2s - 3.6s); }
+  .anim .tile.live .order-dest { animation: receive 1.2s ease 0.8s infinite; }
+  .anim .tile.live .receipt::after { animation: aiscan 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+  .anim .tile.in .receipt mark { animation: markIn 0.7s ease both 0.5s; }
+  .anim .tile.in .fields div { animation: fromL 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--k) * 150ms + 0.9s); }
+  .anim .tile.live .mq-track { animation: mq 28s linear infinite; }
+  .anim .tile.live .mq.rev .mq-track { animation-duration: 34s; animation-direction: reverse; }
+
+  /* Security vault */
+  .anim .vault.live .guard i { animation: spin 3.2s linear infinite; }
+  .anim .vault.live .gate-lock { animation: breathe 2.6s ease-in-out infinite; }
+  .anim .vault.live .gate-line i { animation: flowX 2.6s linear infinite; animation-delay: calc(var(--k) * -0.65s); }
+  .anim .pledge:not(.in) .tick path { stroke-dashoffset: 22; }
+  .anim .pledge.in .tick path { transition: stroke-dashoffset 0.6s ease calc(var(--k, 0) * 60ms + 0.35s); }
+  .anim .band-buy.in::after { animation: shine 1.6s ease 0.5s; }
+  .anim .band-sub.in .meter-track::after { content: ""; position: absolute; top: 0; bottom: 0; width: 30%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent); animation: meter 2.4s ease-in-out 0.6s 2 both; }
+
+  .anim .sent:not([hidden]) .sent-mark circle { animation: drawRing 0.7s ease both; }
+  .anim .sent:not([hidden]) .sent-mark path { animation: drawTick 0.45s ease 0.55s both; }
+  .faq details::details-content { block-size: 0; overflow-y: clip; transition: block-size 0.35s ease, content-visibility 0.35s allow-discrete; }
+  .faq details[open]::details-content { block-size: auto; }
+}
+@keyframes rise { from { transform: translateY(24px); } to { transform: none; } }
+@keyframes sweep { from { background-size: 0% 0.3em; } to { background-size: 100% 0.3em; } }
+@keyframes toastIn { from { transform: translateY(16px) scale(0.96); } to { transform: none; } }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 50%, transparent); } 100% { box-shadow: 0 0 0 8px transparent; } }
+@keyframes fromL { from { translate: -18px 0; opacity: 0.25; } }
+@keyframes fromR { from { translate: 18px 0; opacity: 0.25; } }
+@keyframes popIn { from { scale: 0.3; opacity: 0; } }
+@keyframes fan { from { transform: rotate(0deg) translateX(0) translateY(12px); } }
+@keyframes flash { 50% { background: var(--flag); } }
+@keyframes ship { 0%, 45% { translate: 0 0; opacity: 1; } 62% { translate: 64px 0; opacity: 0; } 63% { translate: -20px 0; opacity: 0; } 82%, 100% { translate: 0 0; opacity: 1; } }
+@keyframes receive { 0%, 100% { scale: 1; } 12% { scale: 1.06; } 30% { scale: 1; } }
+@keyframes aiscan { 0% { translate: 0 -110%; } 70%, 100% { translate: 0 300%; } }
+@keyframes markIn { from { background-size: 0% 100%; } }
+@keyframes mq { to { translate: -50% 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 50% { box-shadow: 0 0 0 14px rgba(124, 151, 255, 0.04), 0 0 60px rgba(124, 151, 255, 0.42); } }
+@keyframes flowX { 0% { left: 0%; opacity: 0; } 8% { opacity: 1; } 44% { background: #FFD60A; box-shadow: 0 0 10px 2px rgba(255, 214, 10, 0.6); transform: scale(1); } 50% { transform: scale(2.2); } 56% { background: #7C97FF; box-shadow: 0 0 10px 2px rgba(124, 151, 255, 0.7); transform: scale(1); } 92% { opacity: 1; } 100% { left: 100%; opacity: 0; background: #7C97FF; box-shadow: 0 0 10px 2px rgba(124, 151, 255, 0.7); } }
+@keyframes flowY { 0% { top: 0%; opacity: 0; } 8% { opacity: 1; } 44% { background: #FFD60A; box-shadow: 0 0 10px 2px rgba(255, 214, 10, 0.6); transform: scale(1); } 50% { transform: scale(2.2); } 56% { background: #7C97FF; box-shadow: 0 0 10px 2px rgba(124, 151, 255, 0.7); transform: scale(1); } 92% { opacity: 1; } 100% { top: 100%; opacity: 0; background: #7C97FF; box-shadow: 0 0 10px 2px rgba(124, 151, 255, 0.7); } }
+@keyframes shine { to { translate: 110% 0; } }
+@keyframes drawRing { from { stroke-dashoffset: 151; } }
+@keyframes drawTick { from { stroke-dashoffset: 36; } }
+@keyframes meter { from { left: -30%; } to { left: 100%; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1068px) {
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile, .tile.w2, .tile.w4 { grid-column: span 1; }
+  .tile.span-all { grid-column: 1 / -1; }
+  .promise { grid-template-columns: minmax(0, 1fr); }
+  .pledges { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .nav-links { display: none; }
+  .nav-actions { margin-left: auto; }
+}
+@media (max-width: 900px) {
+  .demo-grid { grid-template-columns: minmax(0, 1fr); }
+  .demo.is-scrub .demo-grid { gap: 20px; }
+  .demo.is-scrub .caps { min-height: 7.2em; align-content: start; }
+  .demo.is-scrub .cap:not(.on) { display: none; }
+  .demo.is-scrub .timer { margin-bottom: 12px; }
+  .demo.is-scrub .progress { margin-top: 12px; }
+  .box { aspect-ratio: 1 / 1; max-height: 54svh; }
+  .plans { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
+  .pledges { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pipe { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
+  .gate { min-height: 190px; }
+  .gate-line { left: 50%; right: auto; top: -2px; bottom: -2px; width: 2px; height: auto; margin: 0 0 0 -1px; background: linear-gradient(180deg, rgba(255, 214, 10, 0.5), rgba(124, 151, 255, 0.5)); }
+  .gate-line i { left: 50%; top: 0; }
+  .anim .vault.live .gate-line i { animation-name: flowY; }
+  .gate b, .gate small { background: var(--v-bg); padding: 0 8px; }
+  .xl .c-date, .xl .c-who { display: none; }
+}
+@media (max-width: 640px) {
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .band-buy ul { grid-template-columns: minmax(0, 1fr); }
+  .toast { position: relative; right: auto; bottom: auto; margin: -28px auto 0; width: calc(100% - 24px); }
+  .xl .c-inv { display: none; }
+  .xl th, .xl td { padding: 7px 8px; }
+  .window-bar { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; }
+  .window-title { text-align: center; }
+  .receipt-art { grid-template-columns: minmax(0, 1fr); }
+  .receipt-art .order-arrow { justify-self: center; transform: rotate(90deg); }
+  .orders { flex-direction: column; align-items: stretch; }
+  .orders .order-arrow { align-self: center; transform: rotate(90deg); }
+  .order-dest { width: 100%; aspect-ratio: auto; grid-auto-flow: column; padding: 14px; border-radius: 14px; }
+  .faq details p { padding-right: 0; }
+  .demo.is-scrub .cap { font-size: 1.5rem; }
+  .mrow { grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) 7.4em; padding: 7px 10px; font-size: 0.72rem; }
+  .mrow .inv { display: none; }
+  .master-bar { padding: 8px 10px; font-size: 0.75rem; }
+  .match { grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); }
+  .match .cell { flex-direction: column; gap: 0; }
+  .match .links i { height: 50px; }
+  .nav .wrap { gap: 12px; }
+  .wish { padding-left: 14px; gap: 8px; }
+  .wish-say { display: none; }
+  .wish-text { font-size: 0.9375rem; }
+  .pledge { padding: 18px 14px 16px; }
+  .pledge h3 { font-size: 0.9375rem; }
+  .pledge p { font-size: 0.8125rem; }
+  .pledge .tick { top: 18px; right: 12px; width: 16px; height: 16px; }
+  .rec div { grid-template-columns: 5.5em minmax(0, 1fr); font-size: 0.875rem; }
+}
+
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M4 9h16M4 15h16M10 9v12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></symbol>
+    <symbol id="i-step" viewBox="0 0 24 24"><rect x="3.5" y="5" width="10" height="14" rx="2"/><path d="M16.5 12h5M19 9.5l2.5 2.5-2.5 2.5"/></symbol>
+    <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3.5" width="7" height="7" rx="1.8"/><rect x="14" y="13.5" width="7" height="7" rx="1.8"/><path d="M6.5 10.5v3.5a3 3 0 003 3H14"/><circle cx="17.5" cy="7" r="3.5"/><path d="M17.5 5.5V7l1 1"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 006.4 0l3-3a4.5 4.5 0 00-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 00-6.4 0l-3 3a4.5 4.5 0 006.4 6.4l1-1"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8L20 3M16.5 6.5l2.5 2.5M14 9l2 2"/></symbol>
+    <symbol id="i-once" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10h18M7 14.5h4"/></symbol>
+    <symbol id="i-nomonth" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4M4.5 19L19.5 6"/></symbol>
+    <symbol id="i-meter" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1116 0"/><path d="M12 17l4-5"/><path d="M4 20h16"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="16" height="6.5" rx="1.8"/><path d="M8 7.25h.01M8 16.75h.01"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9.5 3.5h5M10.5 3.5v6L5 18.5a1.5 1.5 0 001.3 2.2h11.4a1.5 1.5 0 001.3-2.2L13.5 9.5v-6"/><path d="M7.5 15h9"/></symbol>
+    <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8.5L19 7.5V21H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 7l5 5-5 5"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5L12 12l8.5-4.5M12 12v9"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 018 0v3M12 14.5v2.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/></symbol>
+    <symbol id="i-log" viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v6c0 4.6-3.2 8.3-7.5 9.5C7.7 20.3 4.5 16.6 4.5 12V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.6 3.5 5.4 3.5 8.5s-1.1 5.9-3.5 8.5c-2.4-2.6-3.5-5.4-3.5-8.5s1.1-5.9 3.5-8.5z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="主导航" data-i18n-aria="nav_label">
+  <div class="wrap">
+    <span class="brand">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="3" y="3" width="32" height="32" rx="6" fill="var(--accent)"/>
+        <g fill="var(--accent-ink)">
+          <rect x="8" y="11" width="9.5" height="3.5"/>
+          <rect x="11" y="11" width="3.5" height="17"/>
+          <rect x="20" y="11" width="9.5" height="3.5"/>
+          <polygon points="26,14.5 29.5,14.5 23.5,24.5 20,24.5"/>
+          <rect x="20" y="24.5" width="9.5" height="3.5"/>
+        </g>
+        <rect x="30.5" y="30.5" width="8" height="8" rx="1" fill="var(--flag)" stroke="var(--bg)" stroke-width="1.5"/>
+      </svg>
+      TZ Works
+    </span>
+    <div class="nav-links">
+      <button type="button" data-go="how" data-i18n="nav_how">示范</button>
+      <button type="button" data-go="work" data-i18n="nav_work">能做什么</button>
+      <button type="button" data-go="security" data-i18n="nav_sec">安全</button>
+      <button type="button" data-go="plans" data-i18n="nav_plans">价格</button>
+      <button type="button" data-go="process" data-i18n="nav_process">流程</button>
+      <button type="button" data-go="faq" data-i18n="nav_faq">常见问题</button>
+    </div>
+    <div class="nav-actions">
+      <label class="langpick">
+        <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span id="lang-code" aria-hidden="true">中文</span>
+        <select id="lang-select" aria-label="语言">
+          <option value="zh" lang="zh-Hans">中文</option>
+          <option value="en" lang="en">English</option>
+          <option value="ms" lang="ms">Bahasa Melayu</option>
+        </select>
+      </label>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="切换到深色模式"><svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero_eyebrow">TZ Works · 企业自动化</p>
+        <h1 data-i18n="hero_title"><span class="l">说得出，</span><span class="l"><mark>就做得到。</mark></span></h1>
+        <p class="lead" data-i18n="hero_lead">不用懂技术，也不用写需求文件。把你每天重复在做的工作说出来，我们帮你做成会自己运作的程式。</p>
+        <div class="wish" id="wish">
+          <span class="wish-say" data-i18n="wish_say">你说</span>
+          <span class="wish-text" id="wish-text">每天自动出销售报表</span>
+          <span class="wish-done"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="wish_done">做得到</span></span>
+        </div>
+        <ul class="trust" aria-label="安全承诺" data-i18n-aria="trust_label">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg><span data-i18n="trust1">先用模拟资料开发</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-house"/></svg><span data-i18n="trust2">真实资料不出公司</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg><span data-i18n="trust3">开工前签保密协议</span></li>
+        </ul>
+      </div>
+
+      <figure class="shot" style="margin-bottom:0">
+        <div class="window" role="img" aria-labelledby="shot-cap">
+          <div class="window-bar">
+            <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="window-title" data-i18n="win_title">每周销售汇总.xlsx</div>
+            <div class="status" data-i18n="win_status">自动运作中</div>
+          </div>
+          <div class="xl-wrap">
+            <table class="xl">
+              <thead>
+                <tr><th></th><th>A</th><th class="c-date">B</th><th class="c-inv">C</th><th>D</th><th class="c-who">E</th></tr>
+              </thead>
+              <tbody>
+                <tr class="hdr"><th>1</th><td data-i18n="xl_branch">分店</td><td class="c-date" data-i18n="xl_date">日期</td><td class="c-inv" data-i18n="xl_inv">单号</td><td class="num" data-i18n="xl_amt">金额 (RM)</td><td class="c-who" data-i18n="xl_who">经手人</td></tr>
+                <tr><th>2</th><td data-i18n="br_kl">KL01 吉隆坡</td><td class="c-date muted">26/09</td><td class="c-inv muted">INV-20418</td><td class="num">1,280.00</td><td class="c-who">Aina</td></tr>
+                <tr><th>3</th><td data-i18n="br_pj">PJ02 八打灵</td><td class="c-date muted">26/09</td><td class="c-inv muted">INV-20419</td><td class="num">860.50</td><td class="c-who">Mei Ling</td></tr>
+                <tr class="flag"><th>4</th><td data-i18n="br_klg">KLG3 巴生</td><td class="c-date muted">26/09</td><td class="c-inv muted">INV-20420</td><td class="num">-45.00<span class="why" data-i18n="why_neg">负数</span></td><td class="c-who">Rajesh</td></tr>
+                <tr><th>5</th><td data-i18n="br_sbj">SBJ4 梳邦</td><td class="c-date muted">26/09</td><td class="c-inv muted">INV-20421</td><td class="num">2,115.90</td><td class="c-who">Hafiz</td></tr>
+                <tr class="flag"><th>6</th><td data-i18n="br_jb">JB05 新山</td><td class="c-date muted">26/09</td><td class="c-inv muted">INV-20422</td><td class="num">18,400.00<span class="why" data-i18n="why_high">偏高</span></td><td class="c-who">Siew Wen</td></tr>
+                <tr><th>7</th><td data-i18n="br_iph">IPH6 怡保</td><td class="c-date muted">26/09</td><td class="c-inv muted">INV-20423</td><td class="num">1,540.25</td><td class="c-who">Kumar</td></tr>
+                <tr><th>8</th><td data-i18n="br_mlk">MLK8 马六甲</td><td class="c-date muted">26/09</td><td class="c-inv muted">INV-20425</td><td class="num">1,062.40</td><td class="c-who">Jia Hui</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="toast" aria-hidden="true">
+          <div class="ok"><svg class="icon"><use href="#i-check"/></svg></div>
+          <b><span data-i18n="toast_title">周报已发送</span><small>08:00:14</small></b>
+          <span data-i18n="toast_body">14 间分店 · 2,318 行 · 用时 12 秒</span>
+        </div>
+        <figcaption id="shot-cap" class="sr-only" data-i18n="shot_cap">示例：自动合并的每周销售汇总表，金额异常的两行已被标黄，周报已自动发送。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="manifesto" id="about">
+    <div class="wrap-narrow">
+      <p class="eyebrow" data-i18n="mf_eyebrow">我们的宗旨</p>
+      <p class="scrub" data-i18n="mf_text">你不需要懂技术。只要说得出每天在重复什么、想让它变成怎样，我们就能把它做出来。那件你做梦都希望能自动完成的事，就是我们的工作。</p>
+      <p class="sign"><span data-i18n="mf_sign">说得出，就做得到。</span><small>TZ Works</small></p>
+    </div>
+  </section>
+
+  <!-- Demo intro -->
+  <section class="demo-intro" id="how" data-dark>
+    <div class="wrap-narrow rise">
+      <p class="eyebrow" data-i18n="demo_eyebrow">看看它怎样运作</p>
+      <h2 data-i18n="demo_title">每周五，早上 8 点。</h2>
+      <p data-i18n="demo_lead">同一份销售汇总，手动要 <b>3 小时</b>。自动化之后，<b>12 秒</b>。<sup class="fn">1</sup></p>
+    </div>
+  </section>
+
+  <!-- Demo: pinned scroll-scrubbed -->
+  <section class="demo" id="demo" data-dark aria-label="自动化示范" data-i18n-aria="demo_label">
+    <div class="demo-stage">
+      <div class="wrap">
+        <div class="demo-grid">
+          <div>
+            <div class="timer">
+              <span data-i18n="timer_label">自动化需时</span>
+              <output id="timer">00:00:12</output>
+              <s data-i18n="timer_manual">手动约 3 小时</s>
+            </div>
+            <ol class="caps">
+              <li class="cap on"><span data-i18n="cap1">14 间分店的报表，自动收齐。</span><small data-i18n="cap1_s">从电邮或共用文件夹读取，不用再一个一个下载。</small></li>
+              <li class="cap on"><span data-i18n="cap2">合并成一张总表。</span><small data-i18n="cap2_s">格式不一样的分店，也会先对齐栏位再合并。</small></li>
+              <li class="cap on"><span data-i18n="cap3">有问题的，自动标黄。</span><small data-i18n="cap3_s">负数、明显偏高、缺少单号，按你定的规则检查。</small></li>
+              <li class="cap on"><span data-i18n="cap4">周报发出。你只看三行。</span><small data-i18n="cap4_s">老板 8 点 0 分 14 秒就收到电邮。</small></li>
+            </ol>
+            <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="box" id="box" aria-hidden="true">
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>KL01.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>PJ02.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>KLG3.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>SBJ4.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>JB05.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>IPH6.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>PNG7.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>MLK8.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>KJG9.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>SRB10.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>KTN11.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>KCH12.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>BKI13.xlsx</div>
+            <div class="file"><svg class="icon"><use href="#i-sheet"/></svg>TPG14.xlsx</div>
+
+            <div class="master" id="master">
+              <i class="scanline"></i>
+              <div class="master-bar"><b data-i18n="m_title">总表 · 第 39 周</b><span><output id="rows">2,318</output> <span data-i18n="m_rows">行</span></span></div>
+              <div class="mrow"><span data-i18n="br_kl">KL01 吉隆坡</span><span class="inv">INV-20418</span><span class="n">1,280.00</span></div>
+              <div class="mrow"><span data-i18n="br_pj">PJ02 八打灵</span><span class="inv">INV-20419</span><span class="n">860.50</span></div>
+              <div class="mrow"><i class="hl"></i><span data-i18n="br_klg">KLG3 巴生</span><span class="inv">INV-20420</span><span class="n">-45.00</span><em class="note" data-i18n="note1">金额为负数</em></div>
+              <div class="mrow"><span data-i18n="br_sbj">SBJ4 梳邦</span><span class="inv">INV-20421</span><span class="n">2,115.90</span></div>
+              <div class="mrow"><i class="hl"></i><span data-i18n="br_jb">JB05 新山</span><span class="inv">INV-20422</span><span class="n">18,400.00</span><em class="note" data-i18n="note2">比平时高 10 倍</em></div>
+              <div class="mrow"><i class="hl"></i><span data-i18n="br_png">PNG7 槟城</span><span class="inv">—</span><span class="n">930.00</span><em class="note" data-i18n="note3">缺少单号</em></div>
+              <div class="mrow"><span class="more-rows" data-i18n="m_more">…… 还有 2,312 行</span></div>
+            </div>
+
+            <div class="report" id="report">
+              <div class="report-head">
+                <div class="ok"><svg class="icon"><use href="#i-check"/></svg></div>
+                <div><b data-i18n="r_title">周报已发送</b><small data-i18n="r_to">给：老板、财务经理 · 08:00:14</small></div>
+              </div>
+              <div class="bars"><i style="height:62%"></i><i style="height:48%"></i><i style="height:100%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:44%"></i><i style="height:66%"></i></div>
+              <dl>
+                <dt data-i18n="r_sales">本周营业额</dt><dd>RM 482,316.40</dd>
+                <dt data-i18n="r_branches">分店</dt><dd data-i18n="r_branches_v">14 间</dd>
+                <dt data-i18n="r_check">需要检查</dt><dd class="warn" data-i18n="r_check_v">3 行</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="wrap">
+      <div class="headline rise">
+        <h2 data-i18n="stats_title">少 copy paste，多做正事。</h2>
+      </div>
+      <div class="stats">
+        <div class="stat stat-ok reveal">
+          <div class="big"><span data-count="150">150</span><small data-i18n="unit_hours">小时</small></div>
+          <p><span data-i18n="stat1">一年省下的时间</span><sup class="fn">1</sup></p>
+        </div>
+        <div class="stat reveal" style="--k:2">
+          <div class="big">1–2<small data-i18n="unit_days">天</small></div>
+          <p data-i18n="stat2">给出评估和报价</p>
+        </div>
+        <div class="stat reveal" style="--k:4">
+          <div class="big"><span data-count="30">30</span><small data-i18n="unit_d">天</small></div>
+          <p data-i18n="stat3">完成后免费保修</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section class="section section-alt" id="work">
+    <div class="wrap">
+      <div class="headline rise">
+        <p class="eyebrow" data-i18n="work_eyebrow">能做什么</p>
+        <h2 data-i18n="work_title">能自动化的，比你想的多。</h2>
+        <p data-i18n="work_lead">一件事如果经常做、步骤固定、主要靠 copy paste，它很可能可以交给程式来做。</p>
+      </div>
+
+      <div class="bento">
+        <article class="tile w4 reveal spot">
+          <div class="tile-copy">
+            <span class="tile-kicker" data-i18n="fin_k">财务</span>
+            <h3 data-i18n="fin_t">银行对数，自动配对。</h3>
+            <p data-i18n="fin_p">银行月结单和账目逐笔核对，对不上的另外列出来。</p>
+          </div>
+          <div class="art match" aria-hidden="true">
+            <div class="col"><b data-i18n="fin_bank">银行月结单</b>
+              <div class="cell" style="--k:0"><span>Maybank</span><span>3,200.00</span></div>
+              <div class="cell" style="--k:1"><span>DuitNow</span><span>845.50</span></div>
+              <div class="cell bad" style="--k:2"><span>IBG</span><span>1,120.00</span></div>
+            </div>
+            <div class="links"><i style="--k:0">✓</i><i style="--k:1">✓</i><i class="x" style="--k:2">?</i></div>
+            <div class="col"><b data-i18n="fin_ledger">账目</b>
+              <div class="cell" style="--k:0"><span>INV-3301</span><span>3,200.00</span></div>
+              <div class="cell" style="--k:1"><span>INV-3302</span><span>845.50</span></div>
+              <div class="cell bad" style="--k:2"><span data-i18n="fin_nomatch">找不到</span><span>—</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile w2 reveal spot" style="--k:2">
+          <div class="tile-copy">
+            <span class="tile-kicker" data-i18n="adm_k">行政</span>
+            <h3 data-i18n="adm_t">上百封信，一次生成。</h3>
+            <p data-i18n="adm_p">证书、通知信、报价单，按名单自动填好。</p>
+          </div>
+          <div class="art letters" aria-hidden="true">
+            <div class="letter"><b data-i18n="adm_l3">致：Farah</b><i></i><i></i></div>
+            <div class="letter"><b data-i18n="adm_l2">致：Rajesh</b><i></i><i></i></div>
+            <div class="letter"><b data-i18n="adm_l1">致：陈小姐</b><i></i><i></i></div>
+          </div>
+        </article>
+
+        <article class="tile w2 reveal spot">
+          <div class="tile-copy">
+            <span class="tile-kicker" data-i18n="stk_k">仓库</span>
+            <h3 data-i18n="stk_t">存货差异，一眼看到。</h3>
+            <p data-i18n="stk_p">点货表和系统数量自动核对，有出入的标出来。</p>
+          </div>
+          <div class="art stock" aria-hidden="true">
+            <div class="h"><span data-i18n="stk_item">货品</span><span data-i18n="stk_sys">系统</span><span data-i18n="stk_count">实点</span></div>
+            <div><span>M8 Bolt</span><span>1,200</span><span>1,200</span></div>
+            <div class="bad"><span>PVC 20mm</span><span>86</span><span>71</span></div>
+            <div><span>Cable 2.5mm</span><span>40</span><span>40</span></div>
+          </div>
+        </article>
+
+        <article class="tile w4 reveal spot" data-live style="--k:2">
+          <div class="tile-copy">
+            <span class="tile-kicker" data-i18n="sal_k">销售</span>
+            <h3 data-i18n="sal_t">网店订单，自己进系统。</h3>
+            <p data-i18n="sal_p">各平台的订单整理好，按格式导入会计软件，不用再一张张 key in。</p>
+          </div>
+          <div class="art orders" aria-hidden="true">
+            <div class="order-list">
+              <div class="order" style="--k:0"><span>#SP-88231</span><span>RM 59.90</span></div>
+              <div class="order" style="--k:1"><span>#LZ-40917</span><span>RM 128.00</span></div>
+              <div class="order" style="--k:2"><span>#WEB-1204</span><span>RM 76.50</span></div>
+            </div>
+            <svg class="icon order-arrow" style="width:28px;height:28px"><use href="#i-arrow"/></svg>
+            <div class="order-dest"><svg class="icon"><use href="#i-box"/></svg><span data-i18n="sal_dest">会计软件</span></div>
+          </div>
+        </article>
+
+        <article class="tile w4 reveal spot" data-live>
+          <div class="tile-copy">
+            <span class="tile-kicker" data-i18n="ai_k">AI 读单据</span>
+            <h3 data-i18n="ai_t">发票上的字，自动抄进表格。</h3>
+            <p data-i18n="ai_p">用 AI 读发票和收据，把日期、供应商、金额抓出来，你只需要核对。</p>
+            <span class="tier-tag" data-i18n="ai_tag">C 档 · 含月费</span>
+          </div>
+          <div class="art receipt-art" aria-hidden="true">
+            <div class="receipt">
+              <b>SYARIKAT MAJU JAYA</b>
+              <span><mark>12/09/2026</mark></span>
+              <i></i><i style="width:70%"></i>
+              <span>TOTAL <mark>RM 2,418.60</mark></span>
+            </div>
+            <svg class="icon order-arrow" style="width:28px;height:28px"><use href="#i-arrow"/></svg>
+            <div class="fields">
+              <div style="--k:0"><span data-i18n="ai_f1">日期</span><span>12/09/2026</span></div>
+              <div style="--k:1"><span data-i18n="ai_f2">供应商</span><span>Maju Jaya</span></div>
+              <div style="--k:2"><span data-i18n="ai_f3">金额</span><span>RM 2,418.60</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile w2 reveal spot span-all" data-live style="--k:2">
+          <div class="tile-copy">
+            <span class="tile-kicker" data-i18n="tools_k">不用换系统</span>
+            <h3 data-i18n="tools_t">你现在用的工具，继续用。</h3>
+          </div>
+          <div class="art marquee" role="img" aria-label="Excel, Google Sheets, Gmail, Outlook, SQL Account, AutoCount, Shopee, Lazada">
+            <div class="mq"><div class="mq-track">
+              <div class="mq-set"><span>Excel</span><span>Google Sheets</span><span>Gmail</span><span>Outlook</span><span>SQL Account</span></div>
+              <div class="mq-set" aria-hidden="true"><span>Excel</span><span>Google Sheets</span><span>Gmail</span><span>Outlook</span><span>SQL Account</span></div>
+            </div></div>
+            <div class="mq rev"><div class="mq-track">
+              <div class="mq-set"><span>AutoCount</span><span>Shopee</span><span>Lazada</span><span>WhatsApp</span><span data-i18n="tools_web">网页系统</span></div>
+              <div class="mq-set" aria-hidden="true"><span>AutoCount</span><span>Shopee</span><span>Lazada</span><span>WhatsApp</span><span data-i18n="tools_web">网页系统</span></div>
+            </div></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security -->
+  <section class="vault" id="security" data-dark data-live>
+    <div class="wrap">
+      <div class="headline rise" id="sec-head">
+        <div class="guard" aria-hidden="true"><i></i><svg class="icon"><use href="#i-lock"/></svg></div>
+        <p class="eyebrow" data-i18n="sec_eyebrow">安全</p>
+        <h2 data-scramble data-i18n="sec_title">你的资料，只属于你。</h2>
+        <p data-i18n="sec_lead">安全不是一句口号。下面每一条承诺，都写进合约。</p>
+      </div>
+
+      <div class="pipe reveal" id="pipe">
+        <div class="pcard real">
+          <div class="pcard-head"><span><svg class="icon" aria-hidden="true"><use href="#i-house"/></svg><span data-i18n="pipe_real">你的公司</span></span><span class="pbadge" data-i18n="pipe_real_b">真实资料</span></div>
+          <dl class="rec" aria-hidden="true">
+            <div><dt data-i18n="rec_name">姓名</dt><dd>陈美玲</dd></div>
+            <div><dt data-i18n="rec_phone">电话</dt><dd>012-387 2261</dd></div>
+            <div><dt data-i18n="rec_ic">身份证</dt><dd>881332-14-5566</dd></div>
+            <div><dt data-i18n="rec_bank">银行户口</dt><dd>5140 2231 8876</dd></div>
+          </dl>
+          <p class="pnote"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span data-i18n="pipe_real_note">锁在你的电脑里，不复制、不带走</span></p>
+        </div>
+        <div class="gate">
+          <div class="gate-line" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i></div>
+          <div class="gate-lock" aria-hidden="true"><svg class="icon"><use href="#i-shield"/></svg></div>
+          <b data-i18n="pipe_gate">匿名处理</b>
+          <small data-i18n="pipe_gate_s">在你的电脑上完成</small>
+        </div>
+        <div class="pcard fake">
+          <div class="pcard-head"><span><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg><span data-i18n="pipe_fake">TZ Works 开发用</span></span><span class="pbadge" data-i18n="pipe_fake_b">模拟资料</span></div>
+          <dl class="rec">
+            <div><dt data-i18n="rec_name">姓名</dt><dd data-scramble data-mask data-i18n="rec_fake_name">客户 001</dd></div>
+            <div><dt data-i18n="rec_phone">电话</dt><dd data-scramble data-mask>012-000 0001</dd></div>
+            <div><dt data-i18n="rec_ic">身份证</dt><dd data-scramble data-mask>000000-00-0001</dd></div>
+            <div><dt data-i18n="rec_bank">银行户口</dt><dd data-scramble data-mask>0000 0000 0001</dd></div>
+          </dl>
+          <p class="pnote"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="pipe_fake_note">我们只会拿到这样的模拟资料</span></p>
+        </div>
+      </div>
+
+      <div class="pledges">
+        <div class="pledge reveal spot" style="--k:0"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg></span><h3 data-i18n="pl1_t">先匿名处理，再开发</h3><p data-i18n="pl1_p">开发和示范只用匿名或模拟资料。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:1"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-house"/></svg></span><h3 data-i18n="pl2_t">真实资料不出公司</h3><p data-i18n="pl2_p">只在你的电脑或系统里处理，不复制、不带走。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:2"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg></span><h3 data-i18n="pl3_t">开工前签保密协议</h3><p data-i18n="pl3_p">写清楚我们能碰什么、不能碰什么。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:3"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg></span><h3 data-i18n="pl4_t">最小权限</h3><p data-i18n="pl4_p">只用你开给我们的专用户口，完工后提醒你关掉。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:4"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><h3 data-i18n="pl5_t">密码不写进程式</h3><p data-i18n="pl5_p">密码和金钥放在独立的设定里，不放进程式码。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:5"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></span><h3 data-i18n="pl6_t">先备份，先试跑</h3><p data-i18n="pl6_p">安装前确认有备份，先用副本试跑一次，才碰正式资料。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:6"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span><h3 data-i18n="pl7_t">关键步骤有人点头</h3><p data-i18n="pl7_p">付款、金额、对外发送，都保留人工确认。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:7"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-log"/></svg></span><h3 data-i18n="pl8_t">每次运行都有记录</h3><p data-i18n="pl8_p">什么时候跑、处理多少、有没有出错，一查就知道。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:8"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span><h3 data-i18n="pl9_t">做完就删除</h3><p data-i18n="pl9_p">项目结束 14 天内删除所有样本，并书面通知你。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:9"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg></span><h3 data-i18n="pl10_t">24 小时内通知</h3><p data-i18n="pl10_p">万一出问题，24 小时内告诉你，一起处理。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:10"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></span><h3 data-i18n="pl11_t">用 AI 先经你同意</h3><p data-i18n="pl11_p">书面同意后才使用，只发送必要的栏位。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+        <div class="pledge reveal spot" style="--k:11"><span class="pi"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span><h3 data-i18n="pl12_t">程式码归你，随时可查</h3><p data-i18n="pl12_p">付清后程式全部交给你，你可以请任何人检查。</p><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+      </div>
+      <p class="sec-foot"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg><span data-i18n="sec_foot">以上承诺都写进《服务合约》和《保密协议》，并遵守马来西亚《个人资料保护法》。签约前，你可以先把合约看清楚。</span></p>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section class="section" id="plans">
+    <div class="wrap">
+      <div class="headline rise">
+        <p class="eyebrow" data-i18n="plans_eyebrow">方案与价格</p>
+        <h2 data-i18n="plans_title">找到适合你的方案。</h2>
+        <p data-i18n="plans_lead">价格看工作量和复杂度，不看程式码行数。评估免费，确认报价后才付订金。</p>
+      </div>
+
+      <div class="plans">
+        <article class="plan reveal spot">
+          <div class="plan-glyph" aria-hidden="true"><svg class="icon"><use href="#i-step"/></svg></div>
+          <h3><small data-i18n="plan_a_k">A 档</small><span data-i18n="plan_a">简单脚本</span></h3>
+          <span class="badge badge-buy" data-i18n="badge_buy">买断</span>
+          <div class="price"><b><small class="pre" data-i18n="from_pre"></small>RM50<small class="post" data-i18n="from">起</small></b><span data-i18n="plan_a_range">RM50–300 · 一次过付清</span></div>
+          <ul class="feats">
+            <li><svg class="icon"><use href="#i-doc"/></svg><span data-i18n="plan_a_f1">一个步骤，文件进、文件出<em>例如合并几十个 Excel、PDF 表格转 Excel</em></span></li>
+            <li><svg class="icon"><use href="#i-clock"/></svg><span data-i18n="plan_a_f2">1–3 个工作日完成</span></li>
+            <li class="key"><svg class="icon"><use href="#i-key"/></svg><span data-i18n="plan_f_excl">只为你做，不共享、不转卖</span></li>
+            <li class="key"><svg class="icon"><use href="#i-nomonth"/></svg><span data-i18n="plan_f_nofee">之后没有任何费用</span></li>
+          </ul>
+        </article>
+
+        <article class="plan reveal spot" style="--k:2">
+          <div class="plan-glyph" aria-hidden="true"><svg class="icon"><use href="#i-flow"/></svg></div>
+          <h3><small data-i18n="plan_b_k">B 档</small><span data-i18n="plan_b">部门自动化</span></h3>
+          <span class="badge badge-buy" data-i18n="badge_buy">买断</span>
+          <div class="price"><b><small class="pre" data-i18n="from_pre"></small>RM100<small class="post" data-i18n="from">起</small></b><span data-i18n="plan_b_range">RM100–800 · 一次过付清</span></div>
+          <ul class="feats">
+            <li><svg class="icon"><use href="#i-flow"/></svg><span data-i18n="plan_b_f1">多个步骤，定时自动运行<em>例如每日销售报表、存货对账、自动发电邮</em></span></li>
+            <li><svg class="icon"><use href="#i-clock"/></svg><span data-i18n="plan_b_f2">3–7 个工作日完成</span></li>
+            <li class="key"><svg class="icon"><use href="#i-key"/></svg><span data-i18n="plan_f_excl">只为你做，不共享、不转卖</span></li>
+            <li class="key"><svg class="icon"><use href="#i-nomonth"/></svg><span data-i18n="plan_f_nofee">之后没有任何费用</span></li>
+          </ul>
+        </article>
+
+        <article class="plan reveal spot" style="--k:4">
+          <div class="plan-glyph" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></div>
+          <h3><small data-i18n="plan_c_k">C 档</small><span data-i18n="plan_c">系统连接与 AI</span></h3>
+          <span class="badge badge-sub" data-i18n="badge_sub">一次性 + 月费</span>
+          <div class="price"><b><small class="pre" data-i18n="from_pre"></small>RM800<small class="post" data-i18n="from">起</small></b><span data-i18n="plan_c_range">RM800–2,000 · 另加月费 RM50–500</span></div>
+          <ul class="feats">
+            <li><svg class="icon"><use href="#i-link"/></svg><span data-i18n="plan_c_f1">连接网店、会计软件等系统</span></li>
+            <li><svg class="icon"><use href="#i-spark"/></svg><span data-i18n="plan_c_f2">用 AI 读单据、分类、做摘要</span></li>
+            <li><svg class="icon"><use href="#i-clock"/></svg><span data-i18n="plan_c_f3">1–3 周完成</span></li>
+            <li class="key"><svg class="icon"><use href="#i-meter"/></svg><span data-i18n="plan_c_f4">月费包括 AI 使用费、运作检查、故障维修</span></li>
+            <li><svg class="icon"><use href="#i-server"/></svg><span data-i18n="plan_c_f5">有自己的伺服器跑 AI，可免 API 费用<sup class="fn">2</sup></span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="promise">
+        <div class="band band-buy reveal spot">
+          <h3 data-i18n="buy_t">A、B 档是买断。</h3>
+          <p data-i18n="buy_p">一次过付清，程式就是你的。只为你做，不和别人共享，也不会卖给任何人。之后没有月费，没有授权费，没有任何其他费用。</p>
+          <ul>
+            <li><svg class="icon"><use href="#i-once"/></svg><b data-i18n="buy_1">一次过付清</b><span data-i18n="buy_1s">先付 50% 订金，验收后付余款。</span></li>
+            <li><svg class="icon"><use href="#i-key"/></svg><b data-i18n="buy_2">独家所有</b><span data-i18n="buy_2s">不共享，不转卖。</span></li>
+            <li><svg class="icon"><use href="#i-nomonth"/></svg><b data-i18n="buy_3">没有后续费用</b><span data-i18n="buy_3s">不改就不用再付钱。</span></li>
+          </ul>
+        </div>
+        <div class="band band-sub reveal spot" style="--k:2">
+          <h3 data-i18n="sub_t">C 档为什么有月费？</h3>
+          <p data-i18n="sub_p">AI 每读一张单据、每写一段摘要，都要付 AI 服务的费用。月费就是这部分使用费，加上运作检查和故障维修，按你每月的处理量来定。</p>
+          <div class="meter">
+            <div class="meter-track" aria-hidden="true"></div>
+            <div class="meter-labels"><span><b>RM50</b> <span data-i18n="sub_low">处理量少</span></span><span><b>RM500</b> <span data-i18n="sub_high">处理量大</span></span></div>
+          </div>
+          <p data-i18n="sub_p2">如果你有自己的伺服器可以跑 AI 模型，就不需要买 AI 服务。</p>
+        </div>
+      </div>
+      <p class="fine" data-i18n="plans_fine">超过 RM2,000 的需求会拆成几期，每期单独验收、单独付款。所有方案都有 30 天免费保修。实际价格以评估后的报价单为准。</p>
+      <p class="fine" data-i18n="plans_pay">付款：银行转账或 DuitNow QR，只付到 TZ Works 的商业户口，每次付款都有正式收据。报价已包括全部费用，本公司没有注册服务税（SST），不另收税。详见<a class="plink" href="terms.html">服务条款</a>。</p>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section section-alt" id="process">
+    <div class="wrap">
+      <div class="headline rise">
+        <p class="eyebrow" data-i18n="proc_eyebrow">流程</p>
+        <h2 data-i18n="proc_title">先看到效果，才碰真实资料。</h2>
+      </div>
+    </div>
+    <div class="gallery" id="gallery" tabindex="0" aria-label="合作流程" data-i18n-aria="proc_label">
+      <article class="step spot"><span class="num">1</span><h3 data-i18n="s1_t">告诉我们问题</h3><p data-i18n="s1_p">在下面留一句话就好，不用写长篇。</p><span class="who" data-i18n="s1_w">你：1 分钟</span></article>
+      <article class="step spot"><span class="num">2</span><h3 data-i18n="s2_t">免费评估</h3><p data-i18n="s2_p">我们主动联系你，1–2 个工作日内告诉你能不能做、价格、完成时间。</p><span class="who" data-i18n="s2_w">我们：免费</span></article>
+      <article class="step spot"><span class="num">3</span><h3 data-i18n="s3_t">报价和签约</h3><p data-i18n="s3_p">确认范围，签服务合约和保密协议，付 50% 订金。</p><span class="who" data-i18n="s3_w">双方签字</span></article>
+      <article class="step spot"><span class="num">4</span><h3 data-i18n="s4_t">模拟资料示范</h3><p data-i18n="s4_p">先用匿名或模拟资料做好，给你看效果。不满意就改。</p><span class="who" data-i18n="s4_w">真实资料还没碰</span></article>
+      <article class="step spot"><span class="num">5</span><h3 data-i18n="s5_t">安装启用</h3><p data-i18n="s5_p">装到你的电脑或系统，陪你跑第一次。</p><span class="who" data-i18n="s5_w">安装前请先备份</span></article>
+      <article class="step spot"><span class="num">6</span><h3 data-i18n="s6_t">验收、付余款</h3><p data-i18n="s6_p">按报价单逐条验收，满意后付余款。从这天起 30 天免费保修。</p><span class="who" data-i18n="s6_w">A、B 档到此结束，没有后续费用</span></article>
+    </div>
+    <div class="wrap">
+      <div class="gallery-nav">
+        <button type="button" class="round" id="g-prev" aria-label="上一步" data-i18n-aria="prev"><svg class="icon"><use href="#i-left"/></svg></button>
+        <button type="button" class="round" id="g-next" aria-label="下一步" data-i18n-aria="next"><svg class="icon"><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="headline rise"><h2 data-i18n="faq_title">常见问题。</h2></div>
+      <div class="faq">
+        <details><summary><span data-i18n="q1">买断之后，还会收费吗？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="a1">不会。A、B 档一次过付清，之后没有月费、授权费或任何其他费用。以后想加新功能，按新需求另外报价；不加就不用再付钱。</p></details>
+        <details><summary><span data-i18n="q2">你们做的程式，会卖给别人吗？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="a2">不会。程式是专门为你做的，不和其他客户共享，也不会卖给任何人。这一条写在服务合约里。</p></details>
+        <details><summary><span data-i18n="qs1">你们会看到我们的客户资料吗？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="as1">开发时不会。我们只用匿名或模拟资料开发；在你的电脑上安装，真实资料不复制、不带走。</p></details>
+        <details><summary><span data-i18n="qs2">程式里会不会有后门？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="as2">付清后，程式全部交给你，你可以请任何人检查。我们用的是你开的专用户口，完工后提醒你关掉。</p></details>
+        <details><summary><span data-i18n="q3">C 档的月费包括什么？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="a3">AI 服务的使用费、运作检查和故障维修，按你每月的处理量定在 RM50–500 之间。如果你有自己的伺服器可以跑 AI 模型，就不需要买 AI 服务。</p></details>
+        <details><summary><span data-i18n="q4">我们要换系统吗？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="a4">通常不用。自动化接在你们现在用的 Excel、电邮和系统上。</p></details>
+        <details><summary><span data-i18n="q5">我们没有 IT 人员，可以吗？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="a5">可以。完成时会附上看得懂的使用说明，有问题直接找我们。</p></details>
+        <details><summary><span data-i18n="q6">AI 会不会出错？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="a6">会，所以我们只在适合的地方用 AI，并在关键步骤保留人工确认。很多自动化根本不需要 AI，一个稳定的程式就够了，这类就是 A、B 档的买断方案。</p></details>
+        <details><summary><span data-i18n="q7">你们在哪里？需要上门吗？</span><svg class="icon plus"><use href="#i-plus"/></svg></summary><p data-i18n="a7">主要是远程处理。需要看现场流程或安装时，可以上门。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intake -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="headline rise">
+        <p class="eyebrow" data-i18n="form_eyebrow">联系我们</p>
+        <h2 data-i18n="form_title">告诉我们<wbr>最烦的那件事。</h2>
+        <p data-i18n="form_lead">留一句话就好，我们会主动联系你。</p>
+      </div>
+      <div class="intake">
+        <form class="form" id="intake-form" novalidate>
+          <div class="grid2">
+            <div class="fld"><label for="f-name" data-i18n="f_name">称呼</label><input type="text" id="f-name" name="name" autocomplete="name" maxlength="60" required data-i18n-ph="f_name_ph" placeholder="例如：陈小姐"></div>
+            <div class="fld"><label for="f-contact" data-i18n="f_contact">怎样联系你</label><input type="text" id="f-contact" name="contact" autocomplete="tel" maxlength="120" required data-i18n-ph="f_contact_ph" placeholder="WhatsApp 号码或电邮"></div>
+          </div>
+          <div class="fld"><label for="f-need" data-i18n="f_need">想自动化什么？一句话就好</label><input type="text" id="f-need" name="need" maxlength="300" required data-i18n-ph="f_need_ph" placeholder="例如：每天把网店订单输入 AutoCount"></div>
+          <fieldset class="budget">
+            <legend data-i18n="f_budget">预算</legend>
+            <div class="toggles">
+              <label class="toggle"><input type="radio" name="budget" value="unsure" checked><span data-i18n="opt_unsure">还不确定</span></label>
+              <label class="toggle"><input type="radio" name="budget" value="lt300"><span data-i18n="opt_lt300">RM300 以下</span></label>
+              <label class="toggle"><input type="radio" name="budget" value="300to800"><span>RM300–800</span></label>
+              <label class="toggle"><input type="radio" name="budget" value="800to2000"><span>RM800–2,000</span></label>
+              <label class="toggle"><input type="radio" name="budget" value="gt2000"><span data-i18n="opt_gt2000">RM2,000 以上</span></label>
+            </div>
+          </fieldset>
+          <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+          <p class="err" id="form-error" role="alert" hidden></p>
+          <div class="form-foot">
+            <p class="form-privacy"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span><span data-i18n="form_privacy">内容只发给 TZ Works，不会分享给任何人。</span> <a class="plink" href="privacy.html" data-i18n="privacy_link">隐私声明</a></span></p>
+            <button type="submit" class="btn" id="send-btn" data-i18n="f_send">发送</button>
+          </div>
+        </form>
+        <div class="sent" id="sent" role="status" hidden>
+          <div class="sent-mark" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></div>
+          <h3 data-i18n="sent_t">收到了，谢谢你。</h3>
+          <p data-i18n="sent_p">我们会通过你留下的方式，尽快联系你。</p>
+          <p class="sent-note" id="sent-note" data-i18n="sent_preview" hidden>预览模式：还没接上电邮，这条没有真的发出。设定好后会自动发到你的电邮。</p>
+          <button type="button" class="btn btn-ghost" id="send-again" data-i18n="send_again">再留一句</button>
+        </div>
+        <p class="contact" id="contact-lines" hidden></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <ol>
+      <li data-i18n="fn1">示例为每周五汇总 14 间分店销售表的典型流程，资料为虚构。实际节省的时间视你的流程而定，评估时会按你的情况估算。</li>
+      <li data-i18n="fn2">你的伺服器需要能够运行所需的 AI 模型。这样就不收 AI 使用费，只收运作检查的费用，另外商量。</li>
+    </ol>
+    <div class="bottom">
+      <span>© <span id="year">2026</span> <span id="footer-name">TZ Works</span><span id="footer-reg"></span> · <span class="slogan" data-i18n="footer_slogan">说得出，就做得到。</span></span>
+      <span><span data-i18n="footer_tag">企业自动化服务 · 马来西亚</span><span id="footer-contact"></span> · <a class="plink" href="terms.html" data-i18n="terms_link">服务条款</a> · <a class="plink" href="privacy.html" data-i18n="privacy_link">隐私声明</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script>
+/* 表单网址、联络方式和 SSM 资料都在 config.js 里改。 */
+const CONFIG = window.TZ || {};
+const FORM_ENDPOINT = CONFIG.formEndpoint || "";
+const CONTACT = {
+  whatsapp: CONFIG.whatsapp || "",
+  email: CONFIG.email || "",
+  businessName: CONFIG.businessName || "",
+  ssm: CONFIG.ssm || ""
+};
+
+const LANGS = {
+  zh: { html: "zh-Hans", code: "中文" },
+  en: { html: "en", code: "EN" },
+  ms: { html: "ms", code: "BM" }
+};
+
+const EN = {
+  nav_label: "Main navigation",
+  nav_how: "Demo", nav_work: "What we automate", nav_sec: "Security", nav_plans: "Pricing", nav_process: "Process", nav_faq: "FAQ",
+  hero_eyebrow: "TZ Works · Business automation",
+  hero_title: '<span class="l">If you can say it,</span><span class="l"><mark>we can build it.</mark></span>',
+  hero_lead: "No technical knowledge, no requirement documents. Tell us the work you repeat every day and we'll turn it into a program that runs by itself.",
+  wish_say: "You say", wish_done: "Can do",
+  trust_label: "Security promises", trust1: "Built on sample data", trust2: "Real data never leaves", trust3: "NDA before we start",
+  win_title: "Weekly sales summary.xlsx", win_status: "Running automatically",
+  xl_branch: "Branch", xl_date: "Date", xl_inv: "Invoice", xl_amt: "Amount (RM)", xl_who: "Handled by",
+  br_kl: "KL01 Kuala Lumpur", br_pj: "PJ02 Petaling Jaya", br_klg: "KLG3 Klang", br_sbj: "SBJ4 Subang",
+  br_jb: "JB05 Johor Bahru", br_iph: "IPH6 Ipoh", br_mlk: "MLK8 Melaka", br_png: "PNG7 Penang",
+  why_neg: "Negative", why_high: "Too high",
+  toast_title: "Weekly report sent", toast_body: "14 branches · 2,318 rows · 12 seconds",
+  shot_cap: "Example: an automatically merged weekly sales sheet. Two rows with odd amounts are highlighted and the weekly report has been sent.",
+  mf_eyebrow: "What we stand for",
+  mf_text: "You don't need to know technology. If you can tell us what you repeat every day and how you wish it worked, we can build it. The task you dream of never doing by hand again is exactly our job.",
+  mf_sign: "If you can say it, we can build it.",
+  demo_eyebrow: "See how it works",
+  demo_title: "Friday, 8 a.m.",
+  demo_lead: 'The same sales summary takes <b>3 hours</b> by hand. Automated, it takes <b>12 seconds</b>.<sup class="fn">1</sup>',
+  demo_label: "Automation demo",
+  timer_label: "Automated", timer_manual: "By hand: about 3 hours",
+  cap1: "Reports from 14 branches, collected automatically.", cap1_s: "Read from the mailbox or a shared folder. No more downloading one by one.",
+  cap2: "Merged into one master sheet.", cap2_s: "Branches with different layouts get their columns lined up first.",
+  cap3: "Anything odd is highlighted.", cap3_s: "Negative amounts, unusual spikes, missing invoice numbers: checked by your rules.",
+  cap4: "Report sent. You check three rows.", cap4_s: "The boss has the email at 8:00:14.",
+  m_title: "Master sheet · Week 39", m_rows: "rows", m_more: "… 2,312 more rows",
+  note1: "Negative amount", note2: "10× the usual", note3: "No invoice no.",
+  r_title: "Weekly report sent", r_to: "To: Boss, Finance manager · 08:00:14",
+  r_sales: "Sales this week", r_branches: "Branches", r_branches_v: "14", r_check: "To check", r_check_v: "3 rows",
+  stats_title: "Less copy‑paste. More real work.",
+  unit_hours: "hours", stat1: "saved a year", unit_days: "days", stat2: "to assess and quote", unit_d: "days", stat3: "free warranty after handover",
+  work_eyebrow: "What we automate",
+  work_title: "More can be automated than you think.",
+  work_lead: "If a task happens often, follows fixed steps and is mostly copy-paste, a program can very likely do it.",
+  fin_k: "Finance", fin_t: "Bank reconciliation, matched for you.", fin_p: "Statements and the ledger compared line by line. Anything that doesn't match is listed separately.",
+  fin_bank: "Bank statement", fin_ledger: "Ledger", fin_nomatch: "Not found",
+  adm_k: "Admin", adm_t: "Hundreds of letters in one go.", adm_p: "Certificates, notices and quotations filled in from your list.",
+  adm_l1: "To: Ms Tan", adm_l2: "To: Rajesh", adm_l3: "To: Farah",
+  stk_k: "Inventory", stk_t: "Stock differences at a glance.", stk_p: "Count sheets reconciled against the system, differences flagged.",
+  stk_item: "Item", stk_sys: "System", stk_count: "Counted",
+  sal_k: "Sales", sal_t: "Online orders that enter themselves.", sal_p: "Orders from every platform tidied and imported into your accounting software. No more typing them in.",
+  sal_dest: "Accounting software",
+  ai_k: "AI document reading", ai_t: "Invoice details, copied into your sheet.", ai_p: "AI reads invoices and receipts and pulls out the date, supplier and amount. You just check them.",
+  ai_tag: "Tier C · monthly fee", ai_f1: "Date", ai_f2: "Supplier", ai_f3: "Amount",
+  tools_k: "No new software", tools_t: "Keep the tools you use today.", tools_web: "Web systems",
+  sec_eyebrow: "Security", sec_title: "Your data belongs to you.",
+  sec_lead: "Security isn't a slogan. Every promise below is written into the contract.",
+  pipe_real: "Your company", pipe_real_b: "Real data", pipe_real_note: "Stays on your computers. Never copied, never taken.",
+  pipe_gate: "Anonymise", pipe_gate_s: "Done on your computer",
+  pipe_fake: "TZ Works workspace", pipe_fake_b: "Sample data", pipe_fake_note: "This is all we ever receive",
+  rec_name: "Name", rec_phone: "Phone", rec_ic: "IC no.", rec_bank: "Bank account", rec_fake_name: "Customer 001",
+  pl1_t: "Anonymised first", pl1_p: "We build and demo with anonymised or sample data only.",
+  pl2_t: "Real data stays put", pl2_p: "Processed only on your computers or systems. Never copied, never taken.",
+  pl3_t: "NDA before we start", pl3_p: "It states exactly what we can and cannot access.",
+  pl4_t: "Least access", pl4_p: "We use a dedicated account you create, and remind you to close it when we're done.",
+  pl5_t: "No passwords in code", pl5_p: "Passwords and keys live in separate settings, never in the program.",
+  pl6_t: "Back up and rehearse", pl6_p: "We confirm a backup and run on a copy before touching live data.",
+  pl7_t: "A person approves key steps", pl7_p: "Payments, amounts and outgoing messages keep a human check.",
+  pl8_t: "Every run is logged", pl8_p: "When it ran, how much it processed and any errors, all on record.",
+  pl9_t: "Deleted when done", pl9_p: "All samples deleted within 14 days of the project ending, confirmed in writing.",
+  pl10_t: "Told within 24 hours", pl10_p: "If anything goes wrong, you hear from us within 24 hours and we fix it together.",
+  pl11_t: "AI only with consent", pl11_p: "Used only with your written consent, sending only the fields needed.",
+  pl12_t: "Your code, open to review", pl12_p: "Once paid, the program is yours. Have anyone you like review it.",
+  sec_foot: "Every promise above is written into our service agreement and NDA, in line with Malaysia's Personal Data Protection Act. You can read the contract in full before you sign.",
+  plans_eyebrow: "Plans & pricing",
+  plans_title: "Find the right fit.",
+  plans_lead: "Priced by workload and complexity, not lines of code. The assessment is free; a deposit is only due once you accept the quote.",
+  plan_a_k: "Tier A", plan_a: "Simple script", plan_b_k: "Tier B", plan_b: "Department workflow", plan_c_k: "Tier C", plan_c: "Systems & AI",
+  badge_buy: "Yours to keep", badge_sub: "One-off + monthly",
+  from_pre: "From", from: "",
+  plan_a_range: "RM50–300 · paid once", plan_b_range: "RM100–800 · paid once", plan_c_range: "RM800–2,000 · plus RM50–500 a month",
+  plan_a_f1: "One step, files in and files out<em>e.g. merge dozens of Excel files, turn PDF tables into Excel</em>",
+  plan_a_f2: "Delivered in 1–3 working days",
+  plan_b_f1: "Several steps, runs on a schedule<em>e.g. daily sales reports, stock reconciliation, automatic emails</em>",
+  plan_b_f2: "Delivered in 3–7 working days",
+  plan_f_excl: "Made only for you. Never shared or resold", plan_f_nofee: "No further fees, ever",
+  plan_c_f1: "Connects online stores, accounting software and other systems",
+  plan_c_f2: "Uses AI to read documents, sort and summarise",
+  plan_c_f3: "Delivered in 1–3 weeks",
+  plan_c_f4: "Monthly fee covers AI usage, monitoring and fixes",
+  plan_c_f5: 'Run AI on your own hardware and skip the API cost<sup class="fn">2</sup>',
+  buy_t: "Tiers A and B are yours to keep.",
+  buy_p: "Pay once and the program is yours. It is made only for you, never shared with other clients and never sold to anyone. No monthly fee, no licence fee, no other charges afterwards.",
+  buy_1: "Pay once", buy_1s: "50% deposit, the rest after sign-off.",
+  buy_2: "Exclusively yours", buy_2s: "Not shared, not resold.",
+  buy_3: "No further fees", buy_3s: "No changes, nothing more to pay.",
+  sub_t: "Why does tier C have a monthly fee?",
+  sub_p: "Every document the AI reads and every summary it writes costs an AI service fee. The monthly fee covers that usage plus monitoring and fixes, set by how much you process each month.",
+  sub_low: "light use", sub_high: "heavy use",
+  sub_p2: "If you have your own server or computing power to run AI models, you don't need to buy the AI service.",
+  plans_fine: "Work above RM2,000 is split into phases, each signed off and paid separately. Every plan includes a 30-day free warranty. Final prices are set in the quotation after assessment.",
+  plans_pay: 'Payment: bank transfer or DuitNow QR, only to TZ Works\' business account, with an official receipt for every payment. Quotes include everything; we are not registered for Service Tax (SST), so no tax is added. See our <a class="plink" href="terms.html">terms of service</a>.',
+  proc_eyebrow: "Process", proc_title: "See it working before we touch real data.", proc_label: "How we work together",
+  s1_t: "Tell us the problem", s1_p: "Leave one line in the form below. That's all it takes.", s1_w: "You: 1 minute",
+  s2_t: "Free assessment", s2_p: "We contact you and, within 1–2 working days, tell you whether it can be done, the price and the timeline.", s2_w: "Us: free",
+  s3_t: "Quote and agreement", s3_p: "Agree the scope, sign the service agreement and NDA, pay a 50% deposit.", s3_w: "Both sides sign",
+  s4_t: "Demo on sample data", s4_p: "We build it with anonymised or sample data and show you. Not happy? We change it.", s4_w: "Real data not touched yet",
+  s5_t: "Go live", s5_p: "We install it on your computer or system and run it with you the first time.", s5_w: "Back up first",
+  s6_t: "Sign-off", s6_p: "Check it against the quote point by point, then pay the balance. The 30-day warranty starts that day.", s6_w: "Tiers A and B end here. No further fees.",
+  prev: "Previous step", next: "Next step",
+  faq_title: "Questions.",
+  q1: "After I buy it, will there be more charges?", a1: "No. Tiers A and B are paid once, with no monthly fee, licence fee or any other charge afterwards. If you want new features later, we quote them as new work; if not, there is nothing more to pay.",
+  q2: "Will you sell the program to anyone else?", a2: "No. It is made only for you, never shared with other clients and never sold to anyone. This is written into the service agreement.",
+  qs1: "Will you see our customers' data?", as1: "Not while we build. We develop with anonymised or sample data, deploy on your computers, and never copy or take real data away.",
+  qs2: "Could the program have a back door?", as2: "Once paid, the whole program is yours and anyone you choose can review it. We work through a dedicated account you create, and remind you to close it when the project ends.",
+  q3: "What does the tier C monthly fee cover?", a3: "AI service usage, monitoring and fixes, set between RM50 and RM500 according to how much you process each month. If you have your own server or computing power to run AI models, you don't need to buy the AI service.",
+  q4: "Do we need to change our software?", a4: "Usually not. The automation works with the Excel files, email and systems you use now.",
+  q5: "We have no IT staff. Is that OK?", a5: "Yes. You get plain-language instructions, and you can come straight to us when something breaks.",
+  q6: "Can the AI make mistakes?", a6: "Yes, so we only use AI where it fits and keep human checks on key steps. Many automations need no AI at all, just a reliable program. Those are the tier A and B buy-once plans.",
+  q7: "Where are you? Do you visit?", a7: "Mostly remote. We visit when we need to see the process on site or install something.",
+  form_eyebrow: "Contact us", form_title: "Tell us the task you dread most.",
+  form_lead: "Just one line. We'll get in touch with you.",
+  f_name: "Your name", f_name_ph: "e.g. Ms Tan",
+  f_contact: "How to reach you", f_contact_ph: "WhatsApp number or email",
+  f_need: "What do you want automated? One line is enough", f_need_ph: "e.g. key our online orders into AutoCount every day",
+  f_budget: "Budget", opt_unsure: "Not sure yet", opt_lt300: "Under RM300", opt_gt2000: "Above RM2,000",
+  form_privacy: "Your message goes only to TZ Works and is never shared.",
+  privacy_link: "Privacy notice",
+  terms_link: "Terms of service",
+  f_send: "Send", send_again: "Leave another note",
+  sent_t: "Got it, thank you.", sent_p: "We'll contact you soon through the details you left.",
+  sent_preview: "Preview: the email service isn't connected yet, so nothing was sent. Once deployed, messages go straight to your inbox.",
+  fn1: "The example shows a typical Friday summary of sales sheets from 14 branches, with made-up data. Actual time saved depends on your process; we estimate it for your case during the assessment.",
+  fn2: "Your server or computing power must be able to run the AI models needed. In that case there is no AI usage charge, only a monitoring fee, agreed separately.",
+  footer_slogan: "If you can say it, we can build it.",
+  footer_tag: "Business automation · Malaysia"
+};
+
+const MS = {
+  nav_label: "Navigasi utama",
+  nav_how: "Demo", nav_work: "Kegunaan", nav_sec: "Keselamatan", nav_plans: "Harga", nav_process: "Proses", nav_faq: "Soalan lazim",
+  hero_eyebrow: "TZ Works · Automasi perniagaan",
+  hero_title: '<span class="l">Anda sebut,</span><span class="l"><mark>kami buat.</mark></span>',
+  hero_lead: "Tidak perlu tahu teknologi atau menulis dokumen keperluan. Ceritakan kerja yang anda ulang setiap hari, dan kami jadikan ia program yang berjalan sendiri.",
+  wish_say: "Anda kata", wish_done: "Boleh buat",
+  trust_label: "Janji keselamatan", trust1: "Dibina dengan data contoh", trust2: "Data sebenar kekal di syarikat anda", trust3: "Perjanjian kerahsiaan dahulu",
+  win_title: "Ringkasan jualan mingguan.xlsx", win_status: "Berjalan secara automatik",
+  xl_branch: "Cawangan", xl_date: "Tarikh", xl_inv: "Invois", xl_amt: "Jumlah (RM)", xl_who: "Dikendali oleh",
+  br_kl: "KL01 Kuala Lumpur", br_pj: "PJ02 Petaling Jaya", br_klg: "KLG3 Klang", br_sbj: "SBJ4 Subang",
+  br_jb: "JB05 Johor Bahru", br_iph: "IPH6 Ipoh", br_mlk: "MLK8 Melaka", br_png: "PNG7 Pulau Pinang",
+  why_neg: "Negatif", why_high: "Terlalu tinggi",
+  toast_title: "Laporan mingguan dihantar", toast_body: "14 cawangan · 2,318 baris · 12 saat",
+  shot_cap: "Contoh: helaian jualan mingguan yang digabung secara automatik. Dua baris dengan jumlah luar biasa ditanda dan laporan mingguan telah dihantar.",
+  mf_eyebrow: "Pegangan kami",
+  mf_text: "Anda tidak perlu faham teknologi. Asalkan anda boleh ceritakan kerja yang diulang setiap hari dan bagaimana anda mahu ia berjalan, kami boleh membinanya. Kerja yang anda impikan dapat berjalan sendiri, itulah tugas kami.",
+  mf_sign: "Anda sebut, kami buat.",
+  demo_eyebrow: "Lihat cara ia berfungsi",
+  demo_title: "Jumaat, 8 pagi.",
+  demo_lead: 'Ringkasan jualan yang sama mengambil <b>3 jam</b> secara manual. Selepas diautomasikan, hanya <b>12 saat</b>.<sup class="fn">1</sup>',
+  demo_label: "Demo automasi",
+  timer_label: "Masa automasi", timer_manual: "Manual: kira-kira 3 jam",
+  cap1: "Laporan 14 cawangan, dikumpul secara automatik.", cap1_s: "Dibaca dari peti mel atau folder kongsi. Tiada lagi muat turun satu demi satu.",
+  cap2: "Digabung menjadi satu helaian induk.", cap2_s: "Cawangan dengan format berbeza, lajurnya diselaraskan dahulu.",
+  cap3: "Yang luar biasa, ditanda kuning.", cap3_s: "Jumlah negatif, lonjakan luar biasa, nombor invois hilang: disemak ikut peraturan anda.",
+  cap4: "Laporan dihantar. Anda semak tiga baris sahaja.", cap4_s: "Bos menerima e-mel pada 8:00:14.",
+  m_title: "Helaian induk · Minggu 39", m_rows: "baris", m_more: "… 2,312 baris lagi",
+  note1: "Jumlah negatif", note2: "10× biasa", note3: "Tiada no. invois",
+  r_title: "Laporan mingguan dihantar", r_to: "Kepada: Bos, Pengurus kewangan · 08:00:14",
+  r_sales: "Jualan minggu ini", r_branches: "Cawangan", r_branches_v: "14", r_check: "Perlu disemak", r_check_v: "3 baris",
+  stats_title: "Kurang salin‑tampal. Lebih banyak kerja sebenar.",
+  unit_hours: "jam", stat1: "dijimatkan setahun", unit_days: "hari", stat2: "untuk penilaian dan sebut harga", unit_d: "hari", stat3: "jaminan percuma selepas serahan",
+  work_eyebrow: "Kegunaan",
+  work_title: "Lebih banyak boleh diautomasikan daripada yang anda sangka.",
+  work_lead: "Jika sesuatu kerja kerap dibuat, langkahnya tetap dan kebanyakannya salin-tampal, besar kemungkinan program boleh melakukannya.",
+  fin_k: "Kewangan", fin_t: "Penyesuaian bank, dipadankan untuk anda.", fin_p: "Penyata bank dan lejar dibandingkan baris demi baris. Yang tidak sepadan disenaraikan berasingan.",
+  fin_bank: "Penyata bank", fin_ledger: "Lejar", fin_nomatch: "Tiada padanan",
+  adm_k: "Pentadbiran", adm_t: "Ratusan surat, siap sekali gus.", adm_p: "Sijil, notis dan sebut harga diisi mengikut senarai anda.",
+  adm_l1: "Kepada: Cik Tan", adm_l2: "Kepada: Rajesh", adm_l3: "Kepada: Farah",
+  stk_k: "Stor", stk_t: "Beza stok, nampak serta-merta.", stk_p: "Senarai kiraan stok disemak dengan sistem, perbezaan ditanda.",
+  stk_item: "Barang", stk_sys: "Sistem", stk_count: "Kiraan",
+  sal_k: "Jualan", sal_t: "Pesanan dalam talian masuk sendiri.", sal_p: "Pesanan dari setiap platform dikemas dan diimport ke perisian perakaunan. Tidak perlu taip satu per satu.",
+  sal_dest: "Perisian perakaunan",
+  ai_k: "AI baca dokumen", ai_t: "Butiran invois, disalin ke helaian anda.", ai_p: "AI membaca invois dan resit, lalu mengeluarkan tarikh, pembekal dan jumlah. Anda hanya perlu semak.",
+  ai_tag: "Tahap C · yuran bulanan", ai_f1: "Tarikh", ai_f2: "Pembekal", ai_f3: "Jumlah",
+  tools_k: "Tiada perisian baharu", tools_t: "Teruskan guna alat yang ada sekarang.", tools_web: "Sistem web",
+  sec_eyebrow: "Keselamatan", sec_title: "Data anda milik anda.",
+  sec_lead: "Keselamatan bukan sekadar slogan. Setiap janji di bawah ditulis dalam kontrak.",
+  pipe_real: "Syarikat anda", pipe_real_b: "Data sebenar", pipe_real_note: "Kekal di komputer anda. Tidak disalin, tidak dibawa keluar.",
+  pipe_gate: "Anonimkan", pipe_gate_s: "Dibuat di komputer anda",
+  pipe_fake: "Ruang kerja TZ Works", pipe_fake_b: "Data contoh", pipe_fake_note: "Inilah sahaja yang kami terima",
+  rec_name: "Nama", rec_phone: "Telefon", rec_ic: "No. IC", rec_bank: "Akaun bank", rec_fake_name: "Pelanggan 001",
+  pl1_t: "Anonimkan dahulu", pl1_p: "Kami bina dan tunjuk demo dengan data tanpa nama atau data contoh sahaja.",
+  pl2_t: "Data sebenar tidak keluar", pl2_p: "Diproses hanya di komputer atau sistem anda. Tidak disalin, tidak dibawa keluar.",
+  pl3_t: "Perjanjian kerahsiaan dahulu", pl3_p: "Dinyatakan dengan jelas apa yang boleh dan tidak boleh kami akses.",
+  pl4_t: "Akses paling minimum", pl4_p: "Kami guna akaun khas yang anda buka, dan ingatkan anda menutupnya selepas projek.",
+  pl5_t: "Kata laluan tidak dalam kod", pl5_p: "Kata laluan dan kunci disimpan dalam tetapan berasingan, bukan dalam program.",
+  pl6_t: "Sandaran dan latihan dahulu", pl6_p: "Kami pastikan ada sandaran dan cuba pada salinan sebelum menyentuh data sebenar.",
+  pl7_t: "Langkah penting disahkan manusia", pl7_p: "Bayaran, jumlah wang dan mesej keluar perlu kelulusan seseorang.",
+  pl8_t: "Setiap larian direkodkan", pl8_p: "Bila ia berjalan, berapa banyak diproses dan sebarang ralat, semuanya direkodkan.",
+  pl9_t: "Dipadam selepas siap", pl9_p: "Semua sampel dipadam dalam 14 hari selepas projek tamat, disahkan secara bertulis.",
+  pl10_t: "Dimaklumkan dalam 24 jam", pl10_p: "Jika berlaku masalah, anda dimaklumkan dalam 24 jam dan kami selesaikan bersama.",
+  pl11_t: "AI hanya dengan persetujuan", pl11_p: "Digunakan hanya selepas persetujuan bertulis anda, dan hanya medan yang perlu dihantar.",
+  pl12_t: "Kod milik anda, boleh disemak", pl12_p: "Selepas dibayar penuh, program itu milik anda. Sesiapa pilihan anda boleh menyemaknya.",
+  sec_foot: "Semua janji ini ditulis dalam perjanjian perkhidmatan dan perjanjian kerahsiaan kami, selaras dengan Akta Perlindungan Data Peribadi Malaysia. Anda boleh baca kontrak sepenuhnya sebelum menandatangani.",
+  plans_eyebrow: "Pelan & harga",
+  plans_title: "Cari pelan yang sesuai.",
+  plans_lead: "Harga berdasarkan beban kerja dan kerumitan, bukan bilangan baris kod. Penilaian percuma; deposit hanya selepas anda setuju dengan sebut harga.",
+  plan_a_k: "Tahap A", plan_a: "Skrip ringkas", plan_b_k: "Tahap B", plan_b: "Automasi jabatan", plan_c_k: "Tahap C", plan_c: "Sistem & AI",
+  badge_buy: "Milik penuh", badge_sub: "Sekali bayar + bulanan",
+  from_pre: "Dari", from: "",
+  plan_a_range: "RM50–300 · bayar sekali", plan_b_range: "RM100–800 · bayar sekali", plan_c_range: "RM800–2,000 · tambah RM50–500 sebulan",
+  plan_a_f1: "Satu langkah, fail masuk dan fail keluar<em>cth. gabung puluhan fail Excel, tukar jadual PDF ke Excel</em>",
+  plan_a_f2: "Siap dalam 1–3 hari bekerja",
+  plan_b_f1: "Beberapa langkah, berjalan ikut jadual<em>cth. laporan jualan harian, penyesuaian stok, e-mel automatik</em>",
+  plan_b_f2: "Siap dalam 3–7 hari bekerja",
+  plan_f_excl: "Dibuat khas untuk anda. Tidak dikongsi atau dijual semula", plan_f_nofee: "Tiada caj lagi selepas itu",
+  plan_c_f1: "Sambungkan kedai dalam talian, perisian perakaunan dan sistem lain",
+  plan_c_f2: "Guna AI untuk membaca dokumen, mengasingkan dan meringkaskan",
+  plan_c_f3: "Siap dalam 1–3 minggu",
+  plan_c_f4: "Yuran bulanan meliputi penggunaan AI, pemantauan dan pembaikan",
+  plan_c_f5: 'Jalankan AI pada perkakasan sendiri, tiada kos API<sup class="fn">2</sup>',
+  buy_t: "Tahap A dan B milik anda sepenuhnya.",
+  buy_p: "Bayar sekali dan program itu milik anda. Dibuat khas untuk anda, tidak dikongsi dengan pelanggan lain dan tidak dijual kepada sesiapa. Tiada yuran bulanan, tiada yuran lesen, tiada caj lain selepas itu.",
+  buy_1: "Bayar sekali", buy_1s: "Deposit 50%, baki selepas penerimaan.",
+  buy_2: "Milik eksklusif", buy_2s: "Tidak dikongsi, tidak dijual semula.",
+  buy_3: "Tiada caj susulan", buy_3s: "Tiada perubahan, tiada bayaran lagi.",
+  sub_t: "Kenapa tahap C ada yuran bulanan?",
+  sub_p: "Setiap dokumen yang dibaca AI dan setiap ringkasan yang ditulisnya dikenakan caj perkhidmatan AI. Yuran bulanan meliputi penggunaan itu serta pemantauan dan pembaikan, ditetapkan ikut jumlah yang anda proses setiap bulan.",
+  sub_low: "penggunaan rendah", sub_high: "penggunaan tinggi",
+  sub_p2: "Jika anda ada pelayan atau kuasa pengkomputeran sendiri untuk menjalankan model AI, anda tidak perlu membeli perkhidmatan AI.",
+  plans_fine: "Kerja melebihi RM2,000 dipecahkan kepada beberapa fasa, setiap fasa diterima dan dibayar berasingan. Setiap pelan termasuk jaminan percuma 30 hari. Harga akhir ditetapkan dalam sebut harga selepas penilaian.",
+  plans_pay: 'Bayaran: pindahan bank atau DuitNow QR, hanya ke akaun perniagaan TZ Works, dengan resit rasmi bagi setiap bayaran. Sebut harga merangkumi semua kos; kami tidak berdaftar untuk Cukai Perkhidmatan (SST), jadi tiada cukai ditambah. Lihat <a class="plink" href="terms.html">terma perkhidmatan</a>.',
+  proc_eyebrow: "Proses", proc_title: "Lihat hasilnya dahulu, sebelum data sebenar disentuh.", proc_label: "Cara kita bekerjasama",
+  s1_t: "Ceritakan masalah anda", s1_p: "Tinggalkan satu ayat dalam borang di bawah. Itu sahaja.", s1_w: "Anda: 1 minit",
+  s2_t: "Penilaian percuma", s2_p: "Kami hubungi anda dan dalam 1–2 hari bekerja beritahu sama ada boleh dibuat, harga dan tempohnya.", s2_w: "Kami: percuma",
+  s3_t: "Sebut harga dan perjanjian", s3_p: "Setuju skop, tandatangan perjanjian perkhidmatan dan perjanjian kerahsiaan, bayar deposit 50%.", s3_w: "Kedua-dua pihak tandatangan",
+  s4_t: "Demo dengan data contoh", s4_p: "Kami bina dengan data tanpa nama atau data contoh dan tunjukkan kepada anda. Tidak puas hati? Kami ubah.", s4_w: "Data sebenar belum disentuh",
+  s5_t: "Mula digunakan", s5_p: "Kami pasang di komputer atau sistem anda dan jalankan bersama anda kali pertama.", s5_w: "Buat sandaran dahulu",
+  s6_t: "Penerimaan", s6_p: "Semak mengikut sebut harga satu per satu, kemudian bayar baki. Jaminan 30 hari bermula hari itu.", s6_w: "Tahap A dan B tamat di sini. Tiada caj lagi.",
+  prev: "Langkah sebelumnya", next: "Langkah seterusnya",
+  faq_title: "Soalan lazim.",
+  q1: "Selepas beli, adakah caj lagi?", a1: "Tidak. Tahap A dan B dibayar sekali, tanpa yuran bulanan, yuran lesen atau caj lain. Jika mahu ciri baharu kelak, kami sebut harga sebagai kerja baharu; jika tidak, tiada apa lagi perlu dibayar.",
+  q2: "Adakah anda akan jual program itu kepada orang lain?", a2: "Tidak. Ia dibuat khas untuk anda, tidak dikongsi dengan pelanggan lain dan tidak dijual kepada sesiapa. Perkara ini ditulis dalam perjanjian perkhidmatan.",
+  qs1: "Adakah anda akan nampak data pelanggan kami?", as1: "Tidak semasa membina. Kami guna data tanpa nama atau data contoh, memasang di komputer anda, dan tidak menyalin atau membawa keluar data sebenar.",
+  qs2: "Mungkinkah program itu ada pintu belakang?", as2: "Selepas dibayar, keseluruhan program milik anda dan sesiapa pilihan anda boleh menyemaknya. Kami bekerja melalui akaun khas yang anda buka, dan mengingatkan anda menutupnya selepas projek tamat.",
+  q3: "Apa yang termasuk dalam yuran bulanan tahap C?", a3: "Penggunaan perkhidmatan AI, pemantauan dan pembaikan, ditetapkan antara RM50 hingga RM500 mengikut jumlah yang anda proses setiap bulan. Jika anda ada pelayan atau kuasa pengkomputeran sendiri untuk menjalankan model AI, anda tidak perlu membeli perkhidmatan AI.",
+  q4: "Perlukah kami tukar perisian?", a4: "Biasanya tidak. Automasi berfungsi dengan fail Excel, e-mel dan sistem yang anda guna sekarang.",
+  q5: "Kami tiada staf IT. Boleh?", a5: "Boleh. Anda terima arahan dalam bahasa mudah, dan boleh terus hubungi kami jika ada masalah.",
+  q6: "Bolehkah AI buat silap?", a6: "Boleh, sebab itu kami guna AI hanya di tempat yang sesuai dan kekalkan semakan manusia pada langkah penting. Banyak automasi tidak perlukan AI langsung, cukup program yang stabil. Itulah pelan tahap A dan B yang dibayar sekali.",
+  q7: "Di mana anda? Boleh datang ke pejabat?", a7: "Kebanyakannya secara jarak jauh. Kami datang jika perlu melihat proses di tapak atau memasang sesuatu.",
+  form_eyebrow: "Hubungi kami", form_title: "Ceritakan kerja yang paling memenatkan.",
+  form_lead: "Satu ayat pun cukup. Kami akan hubungi anda.",
+  f_name: "Nama anda", f_name_ph: "cth. Cik Aina",
+  f_contact: "Cara hubungi anda", f_contact_ph: "Nombor WhatsApp atau e-mel",
+  f_need: "Apa yang anda mahu automasikan? Satu ayat cukup", f_need_ph: "cth. masukkan pesanan kedai dalam talian ke AutoCount setiap hari",
+  f_budget: "Bajet", opt_unsure: "Belum pasti", opt_lt300: "Bawah RM300", opt_gt2000: "Lebih RM2,000",
+  form_privacy: "Mesej anda hanya dihantar kepada TZ Works dan tidak dikongsi dengan sesiapa.",
+  privacy_link: "Notis privasi",
+  terms_link: "Terma perkhidmatan",
+  f_send: "Hantar", send_again: "Hantar satu lagi",
+  sent_t: "Diterima, terima kasih.", sent_p: "Kami akan hubungi anda secepat mungkin melalui butiran yang anda berikan.",
+  sent_preview: "Pratonton: perkhidmatan e-mel belum disambungkan, jadi tiada apa dihantar. Selepas dipasang, mesej terus masuk ke peti mel anda.",
+  fn1: "Contoh ini menunjukkan ringkasan jualan hari Jumaat yang biasa bagi 14 cawangan, dengan data rekaan. Masa sebenar yang dijimatkan bergantung pada proses anda; kami anggarkan untuk kes anda semasa penilaian.",
+  fn2: "Pelayan atau kuasa pengkomputeran anda mesti mampu menjalankan model AI yang diperlukan. Dalam keadaan ini tiada caj penggunaan AI, hanya yuran pemantauan yang dipersetujui berasingan.",
+  footer_slogan: "Anda sebut, kami buat.",
+  footer_tag: "Automasi perniagaan · Malaysia"
+};
+
+const MSG = {
+  zh: {
+    required: "请填写称呼、联系方式和想自动化的事。",
+    badContact: "请留下 WhatsApp 号码或电邮，方便我们联系你。",
+    sending: "发送中…", sendFail: "发送失败，请检查网络后再试一次。", busy: "现在留言的人有点多，请过几分钟再试。",
+    wa: "WhatsApp", email: "电邮", reach: "也可以直接找我们", ssm: "SSM",
+    langLabel: "语言", toDark: "切换到深色模式", toLight: "切换到浅色模式"
+  },
+  en: {
+    required: "Please fill in your name, how to reach you and what you want automated.",
+    badContact: "Please leave a WhatsApp number or an email so we can reach you.",
+    sending: "Sending…", sendFail: "That didn't go through. Check your connection and try again.", busy: "Lots of messages right now. Please try again in a few minutes.",
+    wa: "WhatsApp", email: "Email", reach: "You can also reach us directly", ssm: "SSM",
+    langLabel: "Language", toDark: "Switch to dark mode", toLight: "Switch to light mode"
+  },
+  ms: {
+    required: "Sila isi nama, cara hubungi anda dan apa yang mahu diautomasikan.",
+    badContact: "Sila tinggalkan nombor WhatsApp atau e-mel supaya kami boleh hubungi anda.",
+    sending: "Menghantar…", sendFail: "Mesej tidak berjaya dihantar. Semak sambungan anda dan cuba lagi.", busy: "Terlalu banyak mesej sekarang. Sila cuba lagi dalam beberapa minit.",
+    wa: "WhatsApp", email: "E-mel", reach: "Anda juga boleh hubungi kami terus", ssm: "SSM",
+    langLabel: "Bahasa", toDark: "Tukar ke mod gelap", toLight: "Tukar ke mod cerah"
+  }
+};
+
+const WISHES = {
+  zh: ["每天自动出销售报表", "发票金额自动输入系统", "存货不够时提醒我", "分店报表自动合并", "客户询问先分好类"],
+  en: ["A sales report every morning", "Invoices keyed in for me", "Warn me when stock runs low", "Branch sheets merged for me", "Customer questions sorted first"],
+  ms: ["Laporan jualan setiap pagi", "Invois dimasukkan sendiri", "Amaran bila stok rendah", "Helaian cawangan digabung", "Soalan pelanggan diasingkan"]
+};
+
+/* ---------- Shared helpers ---------- */
+const root = document.documentElement;
+const motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+if (motionOK) root.classList.add("anim");
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (p, a, b) => clamp((p - a) / (b - a));
+const ease = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const lerp = (a, b, t) => a + (b - a) * t;
+
+/* ---------- Language ---------- */
+const ZH = {};
+let lang = "zh";
+document.querySelectorAll("[data-i18n]").forEach(el => { if (!(el.dataset.i18n in ZH)) ZH[el.dataset.i18n] = el.innerHTML; });
+document.querySelectorAll("[data-i18n-ph]").forEach(el => { ZH[el.dataset.i18nPh] = el.placeholder; });
+document.querySelectorAll("[data-i18n-aria]").forEach(el => { ZH[el.dataset.i18nAria] = el.getAttribute("aria-label"); });
+const DICTS = { zh: ZH, en: EN, ms: MS };
+
+function t(key) {
+  const d = DICTS[lang];
+  return key in d ? d[key] : (key in EN ? EN[key] : ZH[key]);
+}
+
+function applyLang(next) {
+  if (!LANGS[next]) next = "zh";
+  cancelScrambles();
+  lang = next;
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = t(el.dataset.i18n); if (v !== undefined) el.innerHTML = v; });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { const v = t(el.dataset.i18nPh); if (v !== undefined) el.placeholder = v; });
+  document.querySelectorAll("[data-i18n-aria]").forEach(el => { const v = t(el.dataset.i18nAria); if (v !== undefined) el.setAttribute("aria-label", v); });
+  root.lang = LANGS[lang].html;
+  document.getElementById("lang-code").textContent = LANGS[lang].code;
+  const select = document.getElementById("lang-select");
+  select.value = lang;
+  select.setAttribute("aria-label", MSG[lang].langLabel);
+  syncThemeButton();
+  splitScrub();
+  renderContact();
+  if (window.__demoRender) window.__demoRender();
+  if (window.__wishReset) window.__wishReset();
+  updateScroll();
+  try { localStorage.setItem("tzworks-lang", lang); } catch (e) {}
+}
+
+document.getElementById("lang-select").addEventListener("change", e => applyLang(e.target.value));
+
+/* ---------- Theme ---------- */
+const themeBtn = document.getElementById("theme-btn");
+const darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+function currentTheme() {
+  const set = root.getAttribute("data-theme");
+  return set === "dark" || set === "light" ? set : (darkMQ.matches ? "dark" : "light");
+}
+function syncThemeButton() {
+  const dark = currentTheme() === "dark";
+  themeBtn.querySelector("use").setAttribute("href", dark ? "#i-sun" : "#i-moon");
+  themeBtn.setAttribute("aria-label", dark ? MSG[lang].toLight : MSG[lang].toDark);
+}
+themeBtn.addEventListener("click", () => {
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+  try { localStorage.setItem("tzworks-theme", next); } catch (e) {}
+  syncThemeButton();
+});
+if (darkMQ.addEventListener) darkMQ.addEventListener("change", syncThemeButton);
+
+/* ---------- Decode effect: text resolves from random glyphs ---------- */
+const GLYPH_CJK = "资料安全保密锁盾码验权备份记录核查加密隔离";
+const GLYPH_LAT = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+function glyphFor(c) {
+  if (/[一-鿿]/.test(c)) return GLYPH_CJK[(Math.random() * GLYPH_CJK.length) | 0];
+  if (/[0-9]/.test(c)) return String((Math.random() * 10) | 0);
+  if (/[A-Za-z]/.test(c)) { const g = GLYPH_LAT[(Math.random() * GLYPH_LAT.length) | 0]; return c === c.toLowerCase() ? g.toLowerCase() : g; }
+  return c;
+}
+function scrambleTo(el, dur = 900) {
+  if (!motionOK || el._busy) return;
+  const finalText = el.textContent;
+  const chars = [...finalText];
+  const n = chars.length;
+  const at = chars.map((_, i) => dur * (0.2 + 0.8 * (i / Math.max(1, n))) + Math.random() * 90);
+  const tok = (el._scr = (el._scr || 0) + 1);
+  el._final = finalText;
+  el._busy = true;
+  const t0 = performance.now();
+  let frame = 0;
+  const step = now => {
+    if (el._scr !== tok) return;
+    const elapsed = now - t0;
+    let done = true;
+    if (frame++ % 2 === 0) {
+      let s = "";
+      for (let i = 0; i < n; i++) {
+        if (elapsed >= at[i]) s += chars[i];
+        else { done = false; s += glyphFor(chars[i]); }
+      }
+      el.textContent = s;
+    } else {
+      done = elapsed >= Math.max(...at);
+    }
+    if (done) { el.textContent = finalText; el._busy = false; return; }
+    requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+function cancelScrambles() {
+  document.querySelectorAll("[data-scramble]").forEach(el => {
+    if (el._busy) { el._scr = (el._scr || 0) + 1; el.textContent = el._final; el._busy = false; }
+  });
+}
+
+/* ---------- Manifesto: characters light up as you scroll ---------- */
+function splitScrub() {
+  if (!motionOK) return;
+  document.querySelectorAll(".scrub").forEach(el => {
+    const text = el.textContent;
+    const parts = lang === "zh" ? [...text] : text.split(/(\s+)/);
+    const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    let n = 0;
+    el.innerHTML = parts.map(p => (!p || /^\s+$/.test(p)) ? p : `<span class="c" style="--i:${n++}">${esc(p)}</span>`).join("");
+    el.style.setProperty("--n", n);
+  });
+}
+
+/* ---------- Contact details (plain text, no outbound links) ---------- */
+// 601120900533 → +60 11-2090 0533
+function phoneText(digits) {
+  const d = String(digits || "").replace(/\D/g, "");
+  const m = d.match(/^60(1\d)(\d{3,4})(\d{4})$/);
+  return m ? `+60 ${m[1]}-${m[2]} ${m[3]}` : (d ? "+" + d : "");
+}
+
+function renderContact() {
+  const m = MSG[lang];
+  const parts = [];
+  if (CONTACT.whatsapp) parts.push(`${m.wa} ${phoneText(CONTACT.whatsapp)}`);
+  if (CONTACT.email) parts.push(`${m.email} ${CONTACT.email}`);
+  const box = document.getElementById("contact-lines");
+  box.hidden = !parts.length;
+  box.textContent = parts.length ? [m.reach, ...parts].join("  ·  ") : "";
+  document.getElementById("footer-contact").textContent = parts.map(x => " · " + x).join("");
+  document.getElementById("footer-name").textContent = CONTACT.businessName || "TZ Works";
+  document.getElementById("footer-reg").textContent = CONTACT.ssm ? ` · ${m.ssm} ${CONTACT.ssm}` : "";
+}
+
+/* ---------- Intake form: four short fields, emailed to the owner ---------- */
+(() => {
+  const form = document.getElementById("intake-form");
+  const sendBtn = document.getElementById("send-btn");
+  const sent = document.getElementById("sent");
+  const err = document.getElementById("form-error");
+  const field = n => form.elements.namedItem(n);
+  const val = n => field(n).value.trim();
+  const showErr = msg => { err.textContent = msg; err.hidden = false; };
+
+  function showSent(preview) {
+    form.hidden = true;
+    sent.hidden = false;
+    document.getElementById("sent-note").hidden = !preview;
+    sent.scrollIntoView({ behavior: motionOK ? "smooth" : "auto", block: "center" });
+  }
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const m = MSG[lang];
+    const missing = ["name", "contact", "need"].find(n => !val(n));
+    if (missing) { showErr(m.required); field(missing).focus(); return; }
+    const contact = val("contact");
+    if (!contact.includes("@") && (contact.match(/\d/g) || []).length < 7) { showErr(m.badContact); field("contact").focus(); return; }
+    err.hidden = true;
+
+    const budget = form.querySelector('input[name="budget"]:checked');
+    const payload = {
+      name: val("name"),
+      contact,
+      need: val("need"),
+      budget: budget ? budget.nextElementSibling.textContent.trim() : "",
+      lang,
+      website: val("website")
+    };
+    if (!FORM_ENDPOINT) { showSent(true); return; }
+
+    sendBtn.disabled = true;
+    sendBtn.textContent = m.sending;
+    const ctrl = new AbortController();
+    const timeout = setTimeout(() => ctrl.abort(), 20000);
+    try {
+      const res = await fetch(FORM_ENDPOINT, { method: "POST", body: new URLSearchParams(payload), signal: ctrl.signal });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || "server");
+      form.reset();
+      showSent(false);
+    } catch (ex) {
+      showErr(ex.message === "busy" ? m.busy : m.sendFail);
+    } finally {
+      clearTimeout(timeout);
+      sendBtn.disabled = false;
+      sendBtn.textContent = t("f_send");
+    }
+  });
+
+  document.getElementById("send-again").addEventListener("click", () => {
+    form.reset();
+    sent.hidden = true;
+    form.hidden = false;
+    field("name").focus();
+  });
+})();
+
+/* ---------- Process gallery ---------- */
+(() => {
+  const g = document.getElementById("gallery");
+  const prev = document.getElementById("g-prev");
+  const next = document.getElementById("g-next");
+  const step = () => (g.querySelector(".step")?.getBoundingClientRect().width || 320) + 20;
+  const sync = () => {
+    prev.disabled = g.scrollLeft <= 4;
+    next.disabled = g.scrollLeft + g.clientWidth >= g.scrollWidth - 4;
+  };
+  prev.addEventListener("click", () => g.scrollBy({ left: -step(), behavior: motionOK ? "smooth" : "auto" }));
+  next.addEventListener("click", () => g.scrollBy({ left: step(), behavior: motionOK ? "smooth" : "auto" }));
+  g.addEventListener("scroll", sync, { passive: true });
+  window.addEventListener("resize", sync);
+  sync();
+})();
+
+/* ---------- Reveals, live loops, count-ups ---------- */
+if (motionOK && "IntersectionObserver" in window) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal, .rise").forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add("in");
+    else io.observe(el);
+  });
+
+  const live = new IntersectionObserver(entries => {
+    entries.forEach(en => en.target.classList.toggle("live", en.isIntersecting));
+  }, { rootMargin: "10% 0px" });
+  document.querySelectorAll("[data-live]").forEach(el => live.observe(el));
+
+  const counters = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      counters.unobserve(en.target);
+      const el = en.target;
+      const end = Number(el.dataset.count);
+      const t0 = performance.now();
+      const tick = now => {
+        const k = Math.min(1, (now - t0) / 1400);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll("[data-count]").forEach(el => counters.observe(el));
+} else {
+  document.querySelectorAll(".reveal, .rise").forEach(el => el.classList.add("in"));
+}
+
+/* ---------- Spotlight follows the pointer on cards ---------- */
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  document.querySelectorAll(".spot").forEach(el => {
+    el.addEventListener("pointermove", e => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      el.style.setProperty("--my", `${e.clientY - r.top}px`);
+    });
+  });
+}
+
+/* ---------- Hero: client wishes typed out, each answered with "can do" ---------- */
+(() => {
+  const box = document.getElementById("wish");
+  const out = document.getElementById("wish-text");
+  let idx = 0, text = out.textContent, phase = "hold", timer = null, visible = true;
+  const list = () => WISHES[lang];
+  const schedule = ms => { clearTimeout(timer); timer = setTimeout(tick, ms); };
+  function tick() {
+    timer = null;
+    if (!visible || document.hidden) return;
+    if (phase === "hold") { phase = "erase"; box.classList.add("typing"); schedule(80); return; }
+    if (phase === "erase") {
+      text = [...text].slice(0, -1).join("");
+      out.textContent = text;
+      if (!text) { phase = "type"; idx = (idx + 1) % list().length; schedule(280); } else schedule(24);
+      return;
+    }
+    const target = [...list()[idx]];
+    text = target.slice(0, [...text].length + 1).join("");
+    out.textContent = text;
+    if (text.length >= target.join("").length) { phase = "hold"; box.classList.remove("typing"); schedule(2400); }
+    else schedule(lang === "zh" ? 95 : 45);
+  }
+  window.__wishReset = () => {
+    clearTimeout(timer);
+    timer = null;
+    idx = 0;
+    text = list()[0];
+    out.textContent = text;
+    phase = "hold";
+    box.classList.remove("typing");
+    if (motionOK && visible) schedule(2400);
+  };
+  if (!motionOK) return;
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && !timer) schedule(1800);
+  }).observe(box);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && visible && !timer) schedule(900); });
+})();
+
+/* ---------- Hero: a cursor works through the sheet row by row ---------- */
+(() => {
+  if (!motionOK) return;
+  const shot = document.querySelector(".shot");
+  const wrap = shot.querySelector(".xl-wrap");
+  const rows = [...wrap.querySelectorAll("tbody tr:not(.hdr)")];
+  const toast = shot.querySelector(".toast");
+  const bar = document.createElement("div");
+  bar.className = "scanbar";
+  wrap.appendChild(bar);
+  let i = 0, timer = null, visible = false;
+  function step() {
+    timer = null;
+    if (!visible || document.hidden) return;
+    if (i < rows.length) {
+      const r = rows[i++];
+      bar.style.height = `${r.offsetHeight}px`;
+      bar.style.transform = `translateY(${r.offsetTop}px)`;
+      bar.classList.add("on");
+      if (r.classList.contains("flag")) { r.classList.remove("hit"); void r.offsetWidth; r.classList.add("hit"); }
+      timer = setTimeout(step, 430);
+    } else {
+      bar.classList.remove("on");
+      toast.classList.remove("bump"); void toast.offsetWidth; toast.classList.add("bump");
+      i = 0;
+      timer = setTimeout(step, 2600);
+    }
+  }
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && !timer) timer = setTimeout(step, 1800);
+  }).observe(shot);
+})();
+
+/* ---------- Scroll-linked effects: progress bar, nav, hero tilt, manifesto ---------- */
+const nav = document.querySelector(".nav");
+const darkSections = [...document.querySelectorAll("[data-dark]")];
+const heroWindow = document.querySelector(".window");
+const heroShot = document.querySelector(".shot");
+document.querySelectorAll("[data-go]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const target = document.getElementById(btn.dataset.go);
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight + 1;
+    window.scrollTo({ top: y, behavior: motionOK ? "smooth" : "auto" });
+  });
+});
+
+let scrollQueued = false;
+function updateScroll() {
+  scrollQueued = false;
+  const vh = window.innerHeight;
+  const max = document.documentElement.scrollHeight - vh;
+  nav.style.setProperty("--sp", max > 0 ? (window.scrollY / max).toFixed(4) : "0");
+  const h = nav.offsetHeight;
+  nav.classList.toggle("over-dark", darkSections.some(s => { const r = s.getBoundingClientRect(); return r.top <= h && r.bottom >= h; }));
+  if (!motionOK) return;
+  const r = heroShot.getBoundingClientRect();
+  const k = 1 - Math.pow(1 - clamp((vh * 0.92 - r.top) / (vh * 0.72)), 3);
+  const maxTilt = window.innerWidth < 640 ? 10 : 18;
+  heroWindow.style.transform = `rotateX(${((1 - k) * maxTilt).toFixed(2)}deg) scale(${(0.94 + 0.06 * k).toFixed(4)})`;
+  document.querySelectorAll(".scrub").forEach(el => {
+    const b = el.getBoundingClientRect();
+    el.style.setProperty("--p", clamp((vh * 0.85 - b.top) / (vh * 0.4 + b.height)).toFixed(4));
+  });
+}
+window.addEventListener("scroll", () => { if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(updateScroll); } }, { passive: true });
+window.addEventListener("resize", updateScroll);
+
+/* ---------- Security: headline decodes, sample data keeps re-masking ---------- */
+(() => {
+  if (!motionOK) return;
+  const head = document.getElementById("sec-head");
+  const title = head.querySelector("[data-scramble]");
+  const pipe = document.getElementById("pipe");
+  const masks = [...pipe.querySelectorAll("[data-mask]")];
+  let decodedIn = null, loop = null;
+  const cycle = () => masks.forEach((el, k) => setTimeout(() => scrambleTo(el, 750), k * 170));
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && decodedIn !== lang) { decodedIn = lang; scrambleTo(title, 1100); }
+  }, { threshold: 0.6 }).observe(head);
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { if (!loop) { cycle(); loop = setInterval(cycle, 5200); } }
+    else if (loop) { clearInterval(loop); loop = null; }
+  }, { threshold: 0.3 }).observe(pipe);
+})();
+
+/* ---------- Demo: pinned stage, one frame per scroll position ---------- */
+(() => {
+  const demo = document.getElementById("demo");
+  const box = document.getElementById("box");
+  const files = [...box.querySelectorAll(".file")];
+  const master = document.getElementById("master");
+  const scan = master.querySelector(".scanline");
+  const hls = [...master.querySelectorAll(".hl")];
+  const notes = [...master.querySelectorAll(".note")];
+  const report = document.getElementById("report");
+  const rows = document.getElementById("rows");
+  const timer = document.getElementById("timer");
+  const caps = [...demo.querySelectorAll(".cap")];
+  const bars = [...demo.querySelectorAll(".progress i")];
+  const fmt = n => n.toLocaleString("en-US");
+
+  // Readers who prefer no motion get the finished composition: merged, flagged and sent.
+  if (!motionOK) return;
+  demo.classList.add("is-scrub");
+
+  let W = 0, H = 0, tw = 0, th = 0, mTop = 0, mH = 0, slots = [], scatter = [];
+  function layout() {
+    W = box.clientWidth;
+    H = box.clientHeight;
+    mTop = master.offsetTop;
+    mH = master.offsetHeight;
+    const cols = W < 520 ? 5 : 7;
+    const rowsN = Math.ceil(files.length / cols);
+    const gap = Math.max(8, W * 0.018);
+    tw = (W - gap * (cols - 1)) / cols;
+    th = Math.min(tw * 0.78, (H * 0.8 - gap * (rowsN - 1)) / rowsN);
+    box.style.setProperty("--tw", tw + "px");
+    box.style.setProperty("--th", th + "px");
+    const top = (H - (rowsN * th + (rowsN - 1) * gap)) / 2;
+    slots = files.map((_, i) => ({ x: (i % cols) * (tw + gap), y: top + Math.floor(i / cols) * (th + gap) }));
+    // Deterministic scatter: files drift in from around the frame.
+    scatter = files.map((_, i) => {
+      const a = (i / files.length) * Math.PI * 2 + 0.6;
+      const r = 0.62 + ((i * 37) % 10) / 40;
+      return { x: W / 2 - tw / 2 + Math.cos(a) * W * r * 0.62, y: H / 2 - th / 2 + Math.sin(a) * H * r * 0.58, r: ((i * 53) % 40) - 20 };
+    });
+  }
+
+  let last = -1;
+  function render(force) {
+    const rect = demo.getBoundingClientRect();
+    const total = demo.offsetHeight - window.innerHeight;
+    const p = clamp(-rect.top / Math.max(1, total));
+    if (!force && Math.abs(p - last) < 0.0005) return;
+    last = p;
+
+    const p1 = ease(seg(p, 0.02, 0.24));   // files arrive and line up
+    const p2 = ease(seg(p, 0.28, 0.5));    // files merge into the master sheet
+    const p3 = seg(p, 0.54, 0.74);         // rows get flagged, one after another
+    const p4 = ease(seg(p, 0.78, 0.95));   // report goes out
+
+    const cx = W / 2 - tw / 2, cy = mTop + 18 - th / 2;
+    files.forEach((el, i) => {
+      const s = scatter[i], g = slots[i];
+      const d = clamp(p2 * 1.25 - (i % 7) * 0.035);
+      const x = lerp(lerp(s.x, g.x, p1), cx, d);
+      const y = lerp(lerp(s.y, g.y, p1), cy, d);
+      const sc = lerp(0.86, 1, p1) * lerp(1, 0.35, d);
+      el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) rotate(${(s.r * (1 - p1)).toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+      el.style.opacity = (lerp(0.25, 1, p1) * Math.pow(1 - d, 2)).toFixed(3);
+    });
+
+    const mIn = seg(p, 0.36, 0.52);
+    master.style.opacity = (ease(mIn) * (W < 520 ? 1 - 0.55 * p4 : 1)).toFixed(3);
+    master.style.transform = `translate(${(-3 * p4).toFixed(2)}%, ${(-4 * p4).toFixed(2)}%) scale(${(lerp(0.9, 1, ease(mIn)) * lerp(1, 0.94, p4)).toFixed(3)})`;
+    rows.textContent = fmt(Math.round(2318 * ease(seg(p, 0.3, 0.52))));
+
+    scan.style.opacity = p3 > 0.01 && p3 < 0.99 ? "1" : "0";
+    scan.style.transform = `translateY(${(p3 * (mH - 2)).toFixed(1)}px)`;
+    hls.forEach((hl, i) => {
+      const k = clamp(p3 * 3.2 - i * 0.9);
+      hl.style.opacity = k.toFixed(3);
+      notes[i].style.opacity = k.toFixed(3);
+      notes[i].style.transform = `translateX(${((1 - k) * 12).toFixed(1)}px)`;
+    });
+
+    report.style.opacity = p4.toFixed(3);
+    report.style.transform = `translate(${((1 - p4) * 24).toFixed(1)}px, ${((1 - p4) * 36).toFixed(1)}px) scale(${lerp(0.96, 1, p4).toFixed(3)})`;
+
+    timer.textContent = `00:00:${String(Math.min(12, Math.floor(12 * seg(p, 0.02, 0.95) + 0.0001))).padStart(2, "0")}`;
+    const idx = p < 0.27 ? 0 : p < 0.53 ? 1 : p < 0.77 ? 2 : 3;
+    caps.forEach((c, i) => c.classList.toggle("on", i === idx));
+    const bounds = [[0.02, 0.26], [0.28, 0.52], [0.54, 0.76], [0.78, 0.95]];
+    bars.forEach((b, i) => b.style.setProperty("--f", seg(p, bounds[i][0], bounds[i][1]).toFixed(3)));
+  }
+
+  let queued = false;
+  window.addEventListener("scroll", () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; render(false); });
+  }, { passive: true });
+  window.addEventListener("resize", () => { layout(); render(true); });
+  window.__demoRender = () => { layout(); render(true); };
+  layout();
+  render(true);
+})();
+
+/* ---------- Boot ---------- */
+document.getElementById("year").textContent = new Date().getFullYear();
+let initial = "zh";
+try { initial = localStorage.getItem("tzworks-lang") || initial; } catch (e) {}
+const hashLang = location.hash.replace("#", "");
+if (LANGS[hashLang]) initial = hashLang;
+applyLang(initial);
+</script>
+</body>
+</html>

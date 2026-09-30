@@ -1,0 +1,55 @@
+name: 上线检查
+
+# 每次发布后检查：GitHub Pages 已经换成新版、网页打得开、询问表单的网址从外面连得到。
+# 手动运行时勾选 send_test，会从官网真的送一条测试询问（负责人会收到一封电邮）。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      send_test:
+        description: 从官网真的送一条测试询问（会发电邮给负责人）
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SITE: https://teoruize045-ops.github.io
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 等 GitHub Pages 发布这个版本
+        run: |
+          want=$(cat version.txt)
+          for i in $(seq 1 60); do
+            got=$(curl -fsS "$SITE/version.txt?t=$(date +%s)" || true)
+            if [ "$got" = "$want" ]; then echo "已经发布：$want"; exit 0; fi
+            sleep 10
+          done
+          echo "::error::10 分钟内没有看到版本 $want"
+          exit 1
+
+      - name: 网页打得开
+        run: |
+          for page in / /privacy.html /terms.html /config.js /legal.js /legal.css /assets/favicon.svg; do
+            curl -fsS -o /dev/null -w "%{http_code} $page\n" "$SITE$page"
+          done
+
+      - name: 表单网址从外面连得到
+        run: |
+          endpoint=$(sed -n 's/^[[:space:]]*formEndpoint:[[:space:]]*"\([^"]*\)".*/\1/p' config.js)
+          body=$(curl -sSL "$endpoint" || true)
+          echo "$body" | head -c 300; echo
+          echo "$body" | grep -q '"ok":true' || { echo "::error::表单网址打不开：部署时「谁有权访问」要选「任何人」"; exit 1; }
+
+      - name: 从官网送一条测试询问
+        if: ${{ inputs.send_test }}
+        run: |
+          npm install --no-save --silent playwright-core@1
+          node .github/e2e.mjs
