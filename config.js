@@ -7,7 +7,7 @@ window.TZ = {
   // 联络资料：法规（2012 年电子交易规例）规定网站要公开电话和电邮，都以纯文字显示（不是连结）。
   // whatsapp 只填数字，包括国码。
   whatsapp: "601120900533",
-  email: "",
+  email: "teoruize044@gmail.com",
 
   // SSM 注册好之后填：注册名称和注册号码，会显示在页脚、隐私声明和服务条款里。
   businessName: "",
