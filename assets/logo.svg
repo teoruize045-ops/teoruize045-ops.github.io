@@ -1,12 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 40" width="210" height="40" role="img" aria-labelledby="t">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 40" width="146" height="40" role="img" aria-labelledby="t">
   <title id="t">TZ Works</title>
-  <!-- 标志：一个被选中的单元格，右下角的黄色小方块是 Excel 的“填充柄”（拖一下就自动重复） -->
-  <rect x="3" y="3" width="32" height="32" rx="6" fill="#2447D6"/>
-  <rect x="8" y="11" width="9.5" height="3.5" fill="#FFFFFF"/>
-  <rect x="11" y="11" width="3.5" height="17" fill="#FFFFFF"/>
-  <rect x="20" y="11" width="9.5" height="3.5" fill="#FFFFFF"/>
-  <polygon points="26,14.5 29.5,14.5 23.5,24.5 20,24.5" fill="#FFFFFF"/>
-  <rect x="20" y="24.5" width="9.5" height="3.5" fill="#FFFFFF"/>
-  <rect x="30.5" y="30.5" width="8" height="8" fill="#FFE14A" stroke="#FFFFFF" stroke-width="1.5"/>
-  <text x="48" y="28" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.2" fill="#131D28">TZ Works</text>
+  <g transform="translate(2 2) scale(0.36)"><rect width="100" height="100" rx="22" fill="#2447D6"/><path d="M21 30H79V38.5H21ZM29.25 30H37.75V70H29.25ZM68.71 38.3H79L63.29 61.7H53ZM53 61.5H67.9V70H53Z" fill="#FFFFFF"/><rect x="70.5" y="61.5" width="8.5" height="8.5" fill="#FFE14A"/></g>
+  <text x="48" y="28" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.2" fill="#1D1D1F">TZ Works</text>
 </svg>
